@@ -1033,6 +1033,9 @@ function renderIdeas(){
   const tableWrap=document.getElementById('ideas-table-wrap');
   const list=document.getElementById('ideas-list');
   const empty=document.getElementById('ideas-empty');
+  // Fix #2: actualizar título back-bar dinámicamente
+  const bbTitle=document.querySelector('#page-ideas .back-bar-title');
+  if(bbTitle) bbTitle.textContent='⚡ Ideas Lab — '+ideas.length+' empresa'+(ideas.length===1?'':'s');
   if(!ideas.length){tableWrap.innerHTML='';list.innerHTML='';empty.style.display='';return;}
   empty.style.display='none';
   const yr=new Date().getFullYear();
@@ -1125,7 +1128,7 @@ function renderIdeas(){
         <p style="color:var(--fg);font-size:.9rem"><strong>¿Qué hace?</strong> ${content.queHace}</p>
         <div class="score-bars" data-scores='${dimsAttr}' data-labels='${labelsAttr}'></div>
         <div class="stats-row">
-          <div class="stat-box"><div class="stat-val">${idea.precio?fmtUSD(idea.precio):'—'}</div><div class="stat-lbl">Precio · oct 20</div></div>
+          <div class="stat-box"><div class="stat-val">${idea.precio?fmtUSD(idea.precio):'—'}</div><div class="stat-lbl">Precio · ${new Intl.DateTimeFormat('es-AR',{day:'numeric',month:'short'}).format(new Date())}</div></div>
           <div class="stat-box"><div class="stat-val ${margenClass}">${margenStr}</div><div class="stat-lbl">Margen seguridad</div></div>
           <div class="stat-box"><div class="stat-val ${cagrClass}">${cagrStr}</div><div class="stat-lbl">CAGR base</div></div>
           <div class="stat-box"><div class="stat-val">${projStr}</div><div class="stat-lbl">$10K a ${idea.horizonte}a</div></div>
@@ -1477,7 +1480,7 @@ function renderCore(){
       <p style="color:var(--fg);font-size:.9rem"><strong>¿Qué hace?</strong> ${co.queHace}</p>
       <div class="score-bars" data-scores='${dimsAttr}' data-labels='${labelsAttr}'></div>
       <div class="stats-row">
-        <div class="stat-box"><div class="stat-val">${fmtUSD(co.precio)}</div><div class="stat-lbl">Precio · oct 20</div></div>
+        <div class="stat-box"><div class="stat-val">${fmtUSD(co.precio)}</div><div class="stat-lbl">Precio · ${new Intl.DateTimeFormat('es-AR',{day:'numeric',month:'short'}).format(new Date())}</div></div>
         <div class="stat-box"><div class="stat-val ${margenClass}">${margenStr}</div><div class="stat-lbl">Margen seguridad</div></div>
         <div class="stat-box"><div class="stat-val ${cagrClass}">${fmtPct(co.cagr)}</div><div class="stat-lbl">CAGR base</div></div>
         <div class="stat-box"><div class="stat-val">${fmtUSD(proj)}</div><div class="stat-lbl">$10K a ${co.horizonte}a</div></div>
@@ -1547,7 +1550,11 @@ function renderCore(){
       if(!raw) return;
       const arr = JSON.parse(raw);
       const idea = arr.find(i => i.ticker === ticker);
-      if(idea){ idea.precio = price; localStorage.setItem('ideas-lab-v1', JSON.stringify(arr)); }
+      if(idea){
+        idea.precio = price;
+        idea.cagr = computeCAGR(price, idea.eps, idea.peActual, idea.horizonte, idea.divYield);
+        localStorage.setItem('ideas-lab-v1', JSON.stringify(arr));
+      }
     }catch(e){}
   }
 
