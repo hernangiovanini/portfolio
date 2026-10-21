@@ -1543,11 +1543,11 @@ function renderCore(){
   // Update a price in IDEAS seeds (localStorage)
   function updateIdeaPrice(ticker, price){
     try{
-      const raw = localStorage.getItem('ideas-lab-data');
+      const raw = localStorage.getItem('ideas-lab-v1');
       if(!raw) return;
       const arr = JSON.parse(raw);
       const idea = arr.find(i => i.ticker === ticker);
-      if(idea){ idea.precio = price; localStorage.setItem('ideas-lab-data', JSON.stringify(arr)); }
+      if(idea){ idea.precio = price; localStorage.setItem('ideas-lab-v1', JSON.stringify(arr)); }
     }catch(e){}
   }
 
