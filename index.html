@@ -1,0 +1,2027 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  /* Paleta crema marfil — light */
+  --bg:#FDFAF4; --surface:#F4EFE4; --surface2:#EDE5D6; --border:#DDD5C4;
+  --fg:#1E1A14; --muted:#6B6358; --muted2:#9C9285;
+  --green:#1F6E4F; --green-dim:#1F6E4F18;
+  --red:#B03020; --yellow:#8A5E10; --blue:#1A4470;
+  --purple:#533285; --purple-dim:#53328518;
+  --cash:#854A10; --cash-dim:#854A1018;
+  color-scheme: light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6}
+
+/* ── PAGES ── */
+.page{display:none;min-height:100vh;padding-bottom:4rem}
+.page.active{display:block}
+
+/* ── BACK BAR ── */
+.back-bar{position:sticky;top:0;z-index:50;background:rgba(253,250,244,.94);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--border);
+  padding:.6rem 2rem;display:flex;align-items:center;gap:1rem}
+.back-btn{background:none;border:1px solid var(--border);color:var(--muted);
+  font-family:inherit;font-size:.8rem;font-weight:600;padding:.35rem .9rem;
+  border-radius:20px;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:.4rem}
+.back-btn:hover{color:var(--fg);border-color:var(--fg)}
+.back-bar-title{font-size:.85rem;font-weight:700;color:var(--fg)}
+
+/* ── CONTAINERS ── */
+.container{max-width:960px;margin:0 auto;padding:0 2rem}
+
+/* ── TYPOGRAPHY ── */
+.section-label{font-size:.72rem;font-weight:600;letter-spacing:.1em;
+  color:var(--green);text-transform:uppercase;margin-bottom:.75rem}
+h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;line-height:1.1;
+  letter-spacing:-.03em;margin-bottom:1.25rem}
+h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:800;line-height:1.2;
+  letter-spacing:-.02em;color:var(--fg)}
+h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem;color:var(--fg)}
+p{color:var(--muted);font-size:.95rem;max-width:72ch;margin-bottom:1rem}
+p.white{color:var(--fg)}
+
+/* ── HERO ── */
+.home-hero{padding:4rem 2rem 2rem}
+.home-hero-inner{max-width:960px;margin:0 auto;width:100%}
+.hero-title{font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(2.8rem,7vw,5rem);font-weight:800;line-height:1.05;
+  letter-spacing:-.02em;margin-bottom:1.75rem;color:var(--fg)}
+.hero-title em{font-style:italic;color:var(--green)}
+.hero-sub{font-size:1.05rem;color:var(--muted);max-width:62ch;
+  line-height:1.8;margin-bottom:3rem}
+
+/* ── NAV CARDS ── */
+.nav-cards{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-bottom:3rem}
+@media(max-width:800px){.nav-cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.nav-cards{grid-template-columns:1fr}}
+.nav-card{border-radius:12px;padding:1.5rem 1.75rem;cursor:pointer;
+  transition:transform .15s,box-shadow .15s;text-align:left;border:none;
+  font-family:inherit;position:relative;overflow:hidden;background:var(--surface);
+  border:1px solid var(--border)}
+.nav-card:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(28,24,20,.12)}
+.nav-card-active{opacity:.6;pointer-events:none}
+.nav-card-fil{border-top:3px solid var(--blue)}
+.nav-card-fil .nav-card-name{color:var(--blue)}
+.nav-card-core{border-top:3px solid var(--green)}
+.nav-card-core .nav-card-name{color:var(--green)}
+.nav-card-ideas{border-top:3px solid var(--purple)}
+.nav-card-ideas .nav-card-name{color:var(--purple)}
+.nav-card-cash{border-top:3px solid var(--cash)}
+.nav-card-cash .nav-card-name{color:var(--cash)}
+.nav-card-sim{border-top:3px solid #533285}
+.nav-card-sim .nav-card-name{color:#533285}
+.nav-card-icon{font-size:1.4rem;margin-bottom:.75rem;line-height:1}
+.nav-card-name{font-size:1rem;font-weight:800;margin-bottom:.3rem}
+.nav-card-desc{font-size:.78rem;color:var(--muted);line-height:1.5;margin:0}
+.nav-card-arrow{position:absolute;bottom:1.25rem;right:1.25rem;
+  font-size:.85rem;color:var(--muted2);transition:color .15s,transform .15s}
+.nav-card:hover .nav-card-arrow{transform:translateX(4px);color:var(--muted)}
+
+/* ── PRINCIPIOS ── */
+.principios-block{background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:2rem;margin-bottom:3rem}
+.principios-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:1.5rem}
+@media(max-width:600px){.principios-grid{grid-template-columns:1fr}}
+.principio-item{padding:1rem 1.25rem;border-radius:10px;background:var(--bg);
+  border-left:3px solid var(--green)}
+.principio-item h4{font-size:.88rem;font-weight:700;color:var(--fg);margin-bottom:.3rem}
+.principio-item p{font-size:.8rem;margin:0}
+
+/* ── 7 DIMENSIONES ── */
+.dims-section{margin-bottom:3rem}
+.criterios-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+@media(max-width:600px){.criterios-grid{grid-template-columns:1fr}}
+.crit-card{background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:1.1rem 1.25rem}
+.crit-card h4{font-size:.85rem;font-weight:700;color:var(--fg);margin-bottom:.3rem}
+.crit-card p{font-size:.8rem;margin:0}
+.crit-peso{float:right;background:var(--green-dim);color:var(--green);
+  font-size:.7rem;font-weight:700;padding:.15rem .45rem;border-radius:4px}
+.filtros-row{display:flex;gap:.75rem;flex-wrap:wrap;margin:1.5rem 0}
+.filtro-chip{background:var(--surface2);border:1px solid var(--border);
+  border-radius:20px;padding:.35rem .9rem;font-size:.8rem;font-weight:600;color:var(--muted)}
+.filtro-chip span{color:var(--green)}
+
+/* ── FINANCE CONCEPTOS ── */
+.finance-section{margin-bottom:3rem}
+
+/* ── QUOTE ── */
+.quote{border-left:3px solid var(--green);padding:.75rem 1.25rem;
+  margin:1rem 0;background:var(--green-dim);border-radius:0 8px 8px 0}
+.quote p{color:var(--fg);font-size:.9rem;margin:0}
+
+/* ── DIVIDER ── */
+.divider{border:none;border-top:1px solid var(--border);margin:2.5rem 0}
+
+/* ── PAGE HEADER ── */
+.page-header{padding:2.5rem 0 2rem}
+.page-header-label{font-size:.72rem;font-weight:600;letter-spacing:.1em;
+  color:var(--green);text-transform:uppercase;margin-bottom:.6rem}
+.page-header-label.purple{color:var(--purple)}
+.page-header-label.cash{color:var(--cash)}
+.page-header h2{color:var(--fg);margin-bottom:.5rem}
+.page-header p{max-width:64ch}
+
+/* ── RANKING TABLE ── */
+.comp-table{width:100%;border-collapse:collapse;font-size:.82rem;margin:1rem 0}
+.comp-table th{text-align:left;padding:.6rem .8rem;color:var(--muted);
+  font-weight:600;font-size:.72rem;border-bottom:1px solid var(--border);
+  text-transform:uppercase;letter-spacing:.05em}
+.comp-table th:not(:first-child){text-align:center}
+.comp-table td{padding:.55rem .8rem;border-bottom:1px solid var(--border);color:var(--muted)}
+.comp-table td:first-child{color:var(--fg);font-weight:600}
+.comp-table td:not(:first-child){text-align:center}
+.comp-table tr:last-child td{border-bottom:none}
+.comp-table .best{color:var(--green);font-weight:700}
+.comp-table .warn{color:var(--red)}
+.comp-table .ok{color:var(--yellow)}
+
+/* ── EMPRESA CARD ── */
+.empresa-card{background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;padding:1.75rem;margin-bottom:1.5rem}
+.empresa-card p{max-width:none}
+.empresa-header{display:flex;justify-content:space-between;align-items:flex-start;
+  margin-bottom:1.25rem;flex-wrap:wrap;gap:.75rem}
+.empresa-ticker{font-size:1.5rem;font-weight:900;color:var(--fg)}
+.empresa-nombre{font-size:.82rem;color:var(--muted);margin-top:.1rem}
+.empresa-score-big{font-size:2rem;font-weight:900;color:var(--green);line-height:1}
+.empresa-score-label{font-size:.7rem;color:var(--muted);text-align:right}
+
+.score-bars{margin:1.25rem 0}
+.bar-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.55rem}
+.bar-label{width:160px;font-size:.75rem;color:var(--muted);flex-shrink:0}
+.bar-track{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;background:var(--green);width:0%;
+  transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.bar-val{width:28px;font-size:.75rem;font-weight:700;color:var(--fg);
+  text-align:right;flex-shrink:0}
+
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:1.25rem 0}
+@media(max-width:600px){.stats-row{grid-template-columns:repeat(2,1fr)}}
+.stat-box{background:var(--bg);border-radius:8px;padding:.85rem 1rem;border:1px solid var(--border)}
+.stat-val{font-size:1.15rem;font-weight:800;color:var(--fg)}
+.stat-lbl{font-size:.7rem;color:var(--muted);margin-top:.15rem}
+.stat-val.green{color:var(--green)}
+.stat-val.red{color:var(--red)}
+.stat-val.yellow{color:var(--yellow)}
+
+.pills{display:flex;gap:.5rem;flex-wrap:wrap;margin:.75rem 0}
+.pill{font-size:.72rem;font-weight:600;padding:.2rem .65rem;border-radius:20px}
+.pill-green{background:var(--green-dim);color:var(--green);border:1px solid var(--green)}
+.pill-red{background:#B83A2A18;color:var(--red);border:1px solid var(--red)}
+.pill-yellow{background:#8C6A1A18;color:var(--yellow);border:1px solid var(--yellow)}
+.pill-blue{background:#1A4D7A18;color:var(--blue);border:1px solid var(--blue)}
+.pill-grey{background:var(--border);color:var(--muted);border:1px solid var(--border)}
+.pill-purple{background:var(--purple-dim);color:var(--purple);border:1px solid var(--purple)}
+
+.note-box{background:var(--surface);border:1px solid var(--yellow);
+  border-radius:10px;padding:1rem 1.25rem;margin:1.5rem 0}
+.note-box p{color:var(--yellow);font-size:.85rem;margin:0;font-weight:500}
+
+.empresa-rank-badge{display:inline-flex;align-items:center;gap:.35rem;
+  font-size:.78rem;font-weight:700;padding:.25rem .65rem;border-radius:20px;margin-bottom:.5rem}
+.badge-rank-1{background:#8C6A1A18;color:var(--yellow);border:1px solid var(--yellow)}
+.badge-rank-2{background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+.badge-rank-3{background:#8C3A1A18;color:#8C3A1A;border:1px solid #8C3A1A}
+.badge-rank-n{background:var(--border);color:var(--muted);border:1px solid var(--border)}
+
+/* ── IDEAS LAB CARDS ── */
+.ideas-empty{text-align:center;padding:3rem 1rem;color:var(--muted)}
+.ideas-empty p{margin:0;font-size:.9rem}
+.idea-card{background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1rem;
+  position:relative;transition:border-color .2s}
+.idea-card:hover{border-color:var(--purple)}
+.idea-card-header{display:flex;justify-content:space-between;align-items:flex-start;
+  margin-bottom:.85rem;gap:1rem}
+.idea-card-left{display:flex;align-items:center;gap:1rem}
+.idea-rank-badge{width:32px;height:32px;border-radius:50%;display:flex;
+  align-items:center;justify-content:center;font-size:.8rem;font-weight:800;
+  flex-shrink:0;font-variant-numeric:tabular-nums}
+.idea-rank-1{background:linear-gradient(135deg,#8C6A1A,#C49A2A);color:#FAF7F2}
+.idea-rank-2{background:linear-gradient(135deg,#7A7067,#A09890);color:#FAF7F2}
+.idea-rank-3{background:linear-gradient(135deg,#8C3A1A,#C05020);color:#FAF7F2}
+.idea-rank-other{background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+.idea-ticker{font-size:1.2rem;font-weight:900;color:var(--fg)}
+.idea-nombre{font-size:.78rem;color:var(--muted)}
+.idea-score-right{text-align:right;flex-shrink:0}
+.idea-score-big{font-size:1.6rem;font-weight:900;line-height:1}
+.idea-score-lbl{font-size:.65rem;color:var(--muted)}
+.idea-bars{margin:.5rem 0 .75rem}
+.idea-bar-row{display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem}
+.idea-bar-label{width:130px;font-size:.7rem;color:var(--muted);flex-shrink:0}
+.idea-bar-track{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.idea-bar-fill{height:100%;border-radius:3px;width:0%;transition:width 1.1s cubic-bezier(.4,0,.2,1)}
+.idea-bar-val{width:26px;font-size:.7rem;font-weight:700;color:var(--fg);text-align:right;flex-shrink:0}
+.idea-stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin:.85rem 0}
+@media(max-width:600px){.idea-stats-row{grid-template-columns:repeat(2,1fr)}}
+.idea-stat-box{background:var(--bg);border-radius:8px;padding:.7rem .9rem;border:1px solid var(--border)}
+.idea-stat-val{font-size:1.05rem;font-weight:800;color:var(--fg);font-variant-numeric:tabular-nums}
+.idea-stat-lbl{font-size:.65rem;color:var(--muted);margin-top:.1rem}
+.idea-stat-val.green{color:var(--green)}
+.idea-stat-val.red{color:var(--red)}
+.idea-stat-val.yellow{color:var(--yellow)}
+
+/* ── CASH PLACEHOLDER ── */
+.cash-placeholder{min-height:60vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;padding:4rem 2rem}
+.cash-icon{font-size:4rem;margin-bottom:1.5rem;opacity:.5}
+.cash-placeholder h3{font-size:1.3rem;font-weight:800;color:var(--cash);margin-bottom:.75rem}
+.cash-placeholder p{color:var(--muted);max-width:40ch;margin:0 auto}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── SIMULADOR ── */
+.sim-layout{display:grid;grid-template-columns:320px 1fr;gap:20px;align-items:start}
+@media(max-width:780px){.sim-layout{grid-template-columns:1fr}}
+.sim-panel{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:0}
+.sim-panel-title{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.sim-co-tabs{display:flex;gap:6px;margin-bottom:20px}
+.sim-co-tab{flex:1;padding:7px 10px;border-radius:7px;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-family:inherit;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .15s;text-align:center}
+.sim-co-tab.active{border-color:var(--yellow);background:rgba(138,94,16,.1);color:var(--yellow)}
+.sim-name-input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--fg);font-family:inherit;font-size:.85rem;font-weight:600;margin-bottom:16px}
+.sim-name-input:focus{outline:none;border-color:var(--yellow)}
+.sim-slider-group{display:flex;flex-direction:column;gap:14px}
+.sim-slider-group input[type=range]{accent-color:#6b7280}
+.sim-slider-row{display:flex;flex-direction:column;gap:4px}
+.sim-slider-header{display:flex;justify-content:space-between;align-items:baseline}
+.sim-slider-label{font-size:.75rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.sim-slider-val{font-family:monospace;font-size:.85rem;font-weight:600;color:var(--yellow)}
+.sim-right-col{display:flex;flex-direction:column;gap:20px}
+.sim-result-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:500px){.sim-result-grid{grid-template-columns:1fr}}
+.sim-result-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;position:relative;overflow:hidden}
+.sim-result-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--card-accent,var(--yellow))}
+.sim-card-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
+.sim-card-name{font-size:.78rem;font-weight:700;color:var(--fg);margin-bottom:6px}
+.sim-card-cagr{font-size:2rem;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.04em;line-height:1;margin-bottom:4px}
+.sim-card-sub{font-size:.72rem;color:var(--muted);margin-bottom:10px}
+.sim-card-stats{display:flex;flex-direction:column;gap:4px}
+.sim-stat-ln{display:flex;justify-content:space-between;font-size:.73rem}
+.sim-stat-ln .lbl{color:var(--muted)}
+.sim-stat-ln .val{font-family:monospace;font-size:.73rem;font-weight:600;color:var(--fg)}
+.sim-pill{display:inline-flex;align-items:center;gap:4px;font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:20px;margin-top:8px}
+</style>
+
+
+
+<!-- ══════════════════════════════════════════
+     SHARED HEADER (rendered into every page)
+══════════════════════════════════════════ -->
+<template id="shared-header-tpl">
+<div class="home-hero">
+<div class="home-hero-inner">
+<h1 class="hero-title">Acompañar a las<br><em>mejores empresas</em><br>del mundo.</h1>
+<p class="hero-sub">Invertir es una forma de participar en la transformación del mundo. Con disciplina, horizonte largo y criterio estructural — elegimos los negocios que definen el futuro y los sostenemos el tiempo suficiente para que ese valor se realice.</p>
+<div class="nav-cards">
+  <button class="nav-card nav-card-fil" onclick="showPage('filosofia')">
+    <div class="nav-card-icon">🧭</div>
+    <div class="nav-card-name">Filosofía</div>
+    <p class="nav-card-desc">Principios, criterios de entrada y el marco de las 7 dimensiones.</p>
+    <span class="nav-card-arrow">→</span>
+  </button>
+  <button class="nav-card nav-card-core" onclick="showPage('core')">
+    <div class="nav-card-icon">📊</div>
+    <div class="nav-card-name">Core</div>
+    <p class="nav-card-desc">Las empresas de alta convicción. Wide moat, pricing power, ROIC superior.</p>
+    <span class="nav-card-arrow">→</span>
+  </button>
+  <button class="nav-card nav-card-ideas" onclick="showPage('ideas')">
+    <div class="nav-card-icon">⚡</div>
+    <div class="nav-card-name">Ideas Lab</div>
+    <p class="nav-card-desc">Mayor riesgo, mayor potencial. Evaluadas con el mismo rigor, nunca contra Core.</p>
+    <span class="nav-card-arrow">→</span>
+  </button>
+  <button class="nav-card nav-card-cash" onclick="showPage('cash')">
+    <div class="nav-card-icon">💵</div>
+    <div class="nav-card-name">Cash</div>
+    <p class="nav-card-desc">Gestión del efectivo disponible para oportunidades tácticas.</p>
+    <span class="nav-card-arrow">→</span>
+  </button>
+  <button class="nav-card nav-card-sim" onclick="showPage('sim')">
+    <div class="nav-card-icon">📐</div>
+    <div class="nav-card-name">Simulador</div>
+    <p class="nav-card-desc">Simulá CAGR, compresión de múltiplos y ranking con cualquier empresa.</p>
+    <span class="nav-card-arrow">→</span>
+  </button>
+</div>
+</div><!-- /home-hero-inner -->
+</div><!-- /home-hero -->
+</template>
+
+<!-- ══════════════════════════════════════════
+     PÁGINA: FILOSOFÍA (abre por defecto)
+══════════════════════════════════════════ -->
+<div class="page active" id="page-filosofia">
+  <div class="shared-header-slot"></div>
+  <div class="home-hero" style="padding-top:0">
+  <div class="home-hero-inner">
+  <hr class="divider">
+
+  <!-- PRINCIPIOS -->
+  <div class="principios-block reveal">
+    <div class="section-label">Filosofía de inversión</div>
+    <h2 style="color:var(--white);margin-bottom:.5rem">Por qué hacemos lo que hacemos</h2>
+    <p>Cada decisión nace del mismo proceso. Un proceso disciplinado que se sostiene en el tiempo independientemente del ciclo de mercado.</p>
+    <div class="principios-grid">
+      <div class="principio-item">
+        <h4>Pensamos como dueños, no como traders</h4>
+        <p>Cuando compramos una acción, compramos una fracción de un negocio real. La pregunta no es "¿sube mañana?" sino "¿este negocio vale más en 3-5 años?"</p>
+      </div>
+      <div class="principio-item">
+        <h4>El precio de entrada determina el retorno</h4>
+        <p>Un negocio excelente a precio equivocado es una mala inversión. El margen de seguridad no es pesimismo — es reconocer que nuestros modelos pueden estar errados 15-20%.</p>
+      </div>
+      <div class="principio-item">
+        <h4>Wide moat o no entra</h4>
+        <p>Sin ventaja competitiva estructural, el ROIC converge a WACC. Pagamos por negocios cuyo margen de rentabilidad es estructural, no cíclico.</p>
+      </div>
+      <div class="principio-item">
+        <h4>Disciplina asimétrica</h4>
+        <p>Agresivos cuando el mercado es irracional. Conservadores cuando está eufórico. El cash no es una pérdida — es opcionalidad real.</p>
+      </div>
+      <div class="principio-item">
+        <h4>Objetivo: S&P 500 o más en años buenos</h4>
+        <p>Rendimiento igual o superior al S&P cuando sube. Caída no mayor al 50-70% de lo que caiga el índice. Medición anual.</p>
+      </div>
+      <div class="principio-item">
+        <h4>Horizonte mínimo: 12 meses</h4>
+        <p>Compramos con intención de mantener más de un año. El tiempo es el activo más valioso del inversor disciplinado — es donde el compounding trabaja con mayor fuerza.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem;padding:1.25rem 1.5rem;background:var(--bg);border-radius:10px;border:1px solid var(--border)">
+      <div class="section-label" style="margin-bottom:.5rem">Dos capas del portafolio</div>
+      <p style="margin-bottom:.75rem;color:var(--fg)">El portafolio se organiza en dos capas con lógicas distintas pero el mismo rigor analítico:</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+        <div style="padding:1rem;border-radius:8px;border-top:3px solid var(--green);background:var(--surface)">
+          <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:.4rem">Core — score &gt; 8</div>
+          <p style="margin:0;font-size:.82rem">Calidad máxima. El <em>negocio</em> hace el trabajo. Margen de seguridad ≥ 20% y CAGR total ≥ 13% en 3-5 años.</p>
+        </div>
+        <div style="padding:1rem;border-radius:8px;border-top:3px solid var(--purple);background:var(--surface)">
+          <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:.4rem">Ideas Lab — score &gt; 7</div>
+          <p style="margin:0;font-size:.82rem">Calidad alta, potencial de precio asimétrico. El <em>negocio y el precio</em> hacen el trabajo. Margen de seguridad ≥ 20% y CAGR total &gt; 20% en 3-5 años.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 7 DIMENSIONES -->
+  <div class="dims-section reveal">
+    <div class="section-label">El framework de scoring</div>
+    <h2 style="color:var(--white);margin-bottom:.75rem">7 dimensiones de calidad competitiva</h2>
+    <p>El framework aplica ponderación a siete drivers de valor intrínseco. El resultado captura la calidad estructural del negocio — no el momentum de precio, no el buzz del trimestre.</p>
+
+    <div class="criterios-grid">
+      <div class="crit-card">
+        <span class="crit-peso">20%</span>
+        <h4>Wide Moat — Ventaja competitiva durable</h4>
+        <p>Switching costs, network effects, intangibles, cost advantages. Sin moat, el ROIC converge a WACC con el tiempo.</p>
+      </div>
+      <div class="crit-card">
+        <span class="crit-peso">18%</span>
+        <h4>Pricing Power</h4>
+        <p>Capacidad de trasladar inflación de costos sin elasticidad adversa material. Proxy directo de poder de mercado y diferenciación.</p>
+      </div>
+      <div class="crit-card">
+        <span class="crit-peso">15%</span>
+        <h4>ROIC — Retorno sobre capital invertido</h4>
+        <p>ROIC > WACC = creación de valor. Analizamos consistencia en ciclos completos. FCF conversion confirma calidad del earnings.</p>
+      </div>
+      <div class="crit-card">
+        <span class="crit-peso">12%</span>
+        <h4>Balance Sólido</h4>
+        <p>Net debt/EBITDA, interest coverage, maturity profile. Un balance sólido es opcionalidad real — permite actuar cuando el mercado sobrecastiga.</p>
+      </div>
+      <div class="crit-card">
+        <span class="crit-peso">15%</span>
+        <h4>Crecimiento Orgánico</h4>
+        <p>Revenue y earnings autogenerados, sin M&A dilutivo. El crecimiento orgánico valida el modelo; el inorgánico puede enmascarar deterioro.</p>
+      </div>
+      <div class="crit-card">
+        <span class="crit-peso">12%</span>
+        <h4>Ventajas Estructurales</h4>
+        <p>Assets únicos difíciles de replicar: data propietaria, regulatory moats, ecosistemas con lock-in multidimensional, contratos de misión crítica.</p>
+      </div>
+      <div class="crit-card">
+        <span class="crit-peso">8%</span>
+        <h4>Beta Defensivo</h4>
+        <p>Beta y correlación con el ciclo. En un portafolio diversificado, activos con beta baja reducen volatilidad sin sacrificar retorno esperado.</p>
+      </div>
+      <div class="crit-card" style="background:var(--green-dim);border-color:var(--green)">
+        <h4 style="color:var(--green)">Dos condiciones de entrada</h4>
+        <p>La calidad del negocio es necesaria pero no suficiente. El precio de entrada determina el retorno realizado.</p>
+        <div class="filtros-row" style="margin-top:.5rem">
+          <span class="filtro-chip">Margen de seguridad <span>≥ 20%</span></span>
+          <span class="filtro-chip">CAGR esperado <span>≥ 13%</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- CONCEPTOS FINANCE -->
+  <div class="finance-section reveal">
+    <div class="section-label">Conceptos de Finance aplicados</div>
+    <h2 style="color:var(--white);margin-bottom:.75rem">El vocabulario que usamos</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem">
+      <div class="crit-card">
+        <h4>CAGR y el poder del compounding</h4>
+        <p>La métrica que normaliza retornos de distintas duraciones. A 4 años, la diferencia entre CAGR +15% y +25% es $5,000 sobre $10K invertidos. El tiempo amplifica el gap exponencialmente.</p>
+      </div>
+      <div class="crit-card">
+        <h4>Margen de seguridad</h4>
+        <p>Graham: diferencia entre precio y valor intrínseco. No es pesimismo — es reconocer que las proyecciones pueden estar erradas 15-20% y aun así ganar. El buffer absorbe el error de modelo.</p>
+      </div>
+      <div class="crit-card">
+        <h4>Target price y dispersión</h4>
+        <p>Resultado del modelo sell-side — DCF + comparables. El rango entre low y high target es tan informativo como el consenso: dispersión alta = mayor incertidumbre, no necesariamente mayor riesgo.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- MODELO CAGR -->
+  <div class="finance-section reveal">
+    <div class="section-label">Modelo de retorno — acordado oct 2026</div>
+    <h2 style="color:var(--white);margin-bottom:.75rem">Cómo calculamos el CAGR esperado</h2>
+    <p style="margin-bottom:1.25rem">El CAGR no se toma del consenso sell-side ni del precio objetivo. Se <em>calcula</em> desde fundamentals, con una fórmula única para todo el portafolio:</p>
+
+    <div style="padding:1.25rem 1.5rem;background:var(--bg);border-radius:10px;border:1px solid var(--border);margin-bottom:1.25rem;font-family:monospace;font-size:.9rem;color:var(--white)">
+      CAGR = ( EPS<sub>horizonte</sub> × exitPE / precio_hoy )^(1/N) − 1 + divYield
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem">
+      <div style="padding:1rem;border-radius:8px;background:var(--surface);border:1px solid var(--border)">
+        <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.5rem">EPS horizonte</div>
+        <p style="margin:0;font-size:.82rem">Consenso de analistas para el año objetivo (N = 2–4 años según liquidez del consenso). Fuente: stockanalysis.com. Si el consenso llega solo a 2027, se extrapola al crecimiento implícito del período disponible, con cap de 25%/año.</p>
+      </div>
+      <div style="padding:1rem;border-radius:8px;background:var(--surface);border:1px solid var(--border)">
+        <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.5rem">divYield</div>
+        <p style="margin:0;font-size:.82rem">Dividendo anual como % del precio actual. Se suma al retorno de precio porque es retorno real entregado al accionista independientemente del múltiplo de salida.</p>
+      </div>
+    </div>
+
+    <div style="padding:1rem 1.25rem;background:var(--bg);border-radius:10px;border:1px solid var(--border)">
+      <div class="section-label" style="margin-bottom:.75rem">Escala de P/E de salida — 7 tramos</div>
+      <p style="font-size:.82rem;margin-bottom:.85rem;color:var(--fg)">El múltiplo de salida asume reversión parcial hacia la media histórica de mercado. No usamos el mismo exit PE para todo: la compresión esperada depende del múltiplo de entrada. A múltiplos más extremos, mayor compresión asumida.</p>
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:.82rem">
+          <thead>
+            <tr style="border-bottom:1px solid var(--border)">
+              <th style="text-align:left;padding:.4rem .6rem;color:var(--muted);font-weight:600">P/E actual</th>
+              <th style="text-align:left;padding:.4rem .6rem;color:var(--muted);font-weight:600">P/E de salida asumido</th>
+              <th style="text-align:left;padding:.4rem .6rem;color:var(--muted);font-weight:600">Lógica</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:.4rem .6rem">&lt; 10x</td><td style="padding:.4rem .6rem;color:var(--white);font-weight:700">12.5x</td><td style="padding:.4rem .6rem;color:var(--muted)">Empresa barata — expansión de múltiplo esperada</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:.4rem .6rem">10x – 14x</td><td style="padding:.4rem .6rem;color:var(--white);font-weight:700">14x</td><td style="padding:.4rem .6rem;color:var(--muted)">Expansión moderada hacia promedio histórico</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:.4rem .6rem">15x – 19x</td><td style="padding:.4rem .6rem;color:var(--white);font-weight:700">17.5x</td><td style="padding:.4rem .6rem;color:var(--muted)">Múltiplo razonable — se asume estabilidad</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:.4rem .6rem">20x – 29x</td><td style="padding:.4rem .6rem;color:var(--white);font-weight:700">min(PE actual, 25x)</td><td style="padding:.4rem .6rem;color:var(--muted)">Si cotiza &lt; 25x, se asume que mantiene el múltiplo; si cotiza &gt; 25x, se comprime a 25x</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:.4rem .6rem">30x – 39x</td><td style="padding:.4rem .6rem;color:var(--white);font-weight:700">30x</td><td style="padding:.4rem .6rem;color:var(--muted)">Compresión real pero limitada — calidad justifica prima</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:.4rem .6rem">40x – 49x</td><td style="padding:.4rem .6rem;color:var(--white);font-weight:700">35x</td><td style="padding:.4rem .6rem;color:var(--muted)">Compresión significativa — crecimiento debe compensar</td></tr>
+            <tr><td style="padding:.4rem .6rem">≥ 50x</td><td style="padding:.4rem .6rem;color:var(--white);font-weight:700">40x</td><td style="padding:.4rem .6rem;color:var(--muted)">Múltiplos de euforia — compresión severa asumida</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- MODELO DE RANKING -->
+  <div class="finance-section reveal">
+    <div class="section-label">Modelo de ranking — acordado oct 2026</div>
+    <h2 style="color:var(--white);margin-bottom:.75rem">Cómo ordenamos las oportunidades</h2>
+    <p style="margin-bottom:1.25rem">El ranking responde a una pregunta concreta: <strong>¿dónde poner el dinero primero?</strong> No es un ranking de "mejor empresa" — es un ranking de "mejor oportunidad hoy", que pondera retorno esperado y calidad del negocio.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+      <div style="padding:1.25rem;border-radius:10px;border-top:3px solid var(--purple);background:var(--surface)">
+        <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:.6rem">Ideas Lab</div>
+        <div style="font-family:monospace;font-size:.88rem;color:var(--white);margin-bottom:.75rem;padding:.6rem .8rem;background:var(--bg);border-radius:6px">
+          Rank = 0.60 × min(CAGR/50, 1.5) + 0.40 × (Score/10)
+        </div>
+        <p style="font-size:.8rem;margin-bottom:.5rem"><strong>60% CAGR:</strong> Ideas Lab es donde el precio asimétrico hace el trabajo. Un CAGR muy alto (+50%) recibe peso máximo — el upside de precio justifica la posición.</p>
+        <p style="font-size:.8rem;margin:0"><strong>40% Score:</strong> La calidad sigue siendo obligatoria — una empresa con CAGR alto pero score bajo no lidera el ranking sin anclaje de calidad.</p>
+        <p style="font-size:.75rem;color:var(--muted);margin-top:.5rem">CAGR satura en 75% (cap 1.5×). Max score = 1.30</p>
+      </div>
+      <div style="padding:1.25rem;border-radius:10px;border-top:3px solid var(--green);background:var(--surface)">
+        <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:.6rem">Core</div>
+        <div style="font-family:monospace;font-size:.88rem;color:var(--white);margin-bottom:.75rem;padding:.6rem .8rem;background:var(--bg);border-radius:6px">
+          Rank = 0.50 × min(CAGR/30, 1.5) + 0.50 × (Score/10)
+        </div>
+        <p style="font-size:.8rem;margin-bottom:.5rem"><strong>50% CAGR:</strong> En Core el CAGR importa, pero no puede dominar — la calidad del negocio tiene igual peso que el retorno esperado.</p>
+        <p style="font-size:.8rem;margin:0"><strong>50% Score:</strong> Un negocio de score 9.0 con CAGR moderado sigue siendo una posición Core excelente. El score protege al portafolio ante compresión de múltiplos.</p>
+        <p style="font-size:.75rem;color:var(--muted);margin-top:.5rem">CAGR satura en 45% (cap 1.5×). Max score = 1.25</p>
+      </div>
+    </div>
+
+    <div style="margin-top:1rem;padding:1rem 1.25rem;background:var(--bg);border-radius:10px;border:1px solid var(--border)">
+      <p style="font-size:.82rem;margin:0;color:var(--fg)"><strong>Principio clave:</strong> No hay tier binario ni bonus por cumplir condiciones. El orden es continuo — cada empresa sube o baja en función de su CAGR y score actuales. Si el mercado ofrece un descuento mayor en una empresa de alta calidad, su CAGR sube y su posición en el ranking mejora automáticamente.</p>
+    </div>
+  </div>
+
+</div><!-- /home-hero-inner -->
+</div><!-- /home-hero -->
+</div><!-- /page-filosofia -->
+
+
+<!-- ══════════════════════════════════════════
+     PÁGINA: CORE
+══════════════════════════════════════════ -->
+<div class="page" id="page-core">
+  <div class="shared-header-slot"></div>
+  <div class="back-bar">
+    <button class="back-btn" onclick="showPage('home')">← Inicio</button>
+    <span class="back-bar-title">Core — 10 empresas</span>
+  </div>
+  <div class="container">
+    <div class="page-header">
+      <div class="page-header-label">Portfolio Core</div>
+      <h2>Alta convicción, largo plazo</h2>
+      <p>Los mejores negocios del mundo. Empresas con score superior a 8 en el framework de 7 dimensiones. El negocio hace el trabajo — el tiempo y el compounding hacen el resto.</p>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem">
+        <span class="filtro-chip">Score mínimo <span>&gt; 8.0</span></span>
+        <span class="filtro-chip">Margen de seguridad <span>≥ 20%</span></span>
+        <span class="filtro-chip">CAGR total <span>≥ 13%</span></span>
+        <span class="filtro-chip">Horizonte <span>3–5 años</span></span>
+      </div>
+    </div>
+
+    <!-- TABLA COMPARATIVA 10 EMPRESAS — nueva fórmula Score 25% + CAGR 50% + Margen 25% -->
+    <div style="overflow-x:auto;margin-bottom:2.5rem">
+      <div style="margin-bottom:.75rem;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap">
+        <span style="font-size:.85rem;font-weight:700;color:var(--fg)">📊 Ranking Core</span>
+        <span style="font-size:.68rem;color:var(--muted)">Ordenado por: Score 25% · CAGR 50% · Margen 25% — empresas que no cumplen los 3 filtros quedan en Tier 2</span>
+      </div>
+      <table class="comp-table" style="min-width:760px">
+        <thead>
+          <tr>
+            <th>Rank</th><th>Empresa</th><th>Score</th><th>Precio</th>
+            <th>Target</th><th>Margen</th><th>CAGR</th>
+            <th>$10K→2030</th><th>Mrg ≥20%</th><th>CAGR ≥13%</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- TIER 1 — cumplen los 3 criterios -->
+          <tr><td colspan="10" style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);padding:.5rem .8rem;background:var(--green-dim)">Tier 1 — cumplen score &gt;8, margen ≥20% y CAGR ≥13%</td></tr>
+          <tr>
+            <td style="font-size:1.1rem">🥇</td>
+            <td><strong style="color:var(--fg)">NVDA</strong><br><span style="font-size:.72rem;color:var(--muted)">NVIDIA Corporation</span></td>
+            <td><span style="color:var(--green);font-weight:800">8.57</span></td>
+            <td>$216</td><td>$329</td>
+            <td class="best">+51.9%</td>
+            <td class="best">+50.0%</td>
+            <td class="best">$50,625</td>
+            <td><span style="color:var(--green)">✅</span></td>
+            <td><span style="color:var(--green)">✅</span></td>
+          </tr>
+          <tr>
+            <td style="font-size:1.1rem">🥈</td>
+            <td><strong style="color:var(--fg)">AVGO</strong><br><span style="font-size:.72rem;color:var(--muted)">Broadcom Inc.</span></td>
+            <td><span style="color:var(--green);font-weight:800">8.27</span></td>
+            <td>$334</td><td>$528</td>
+            <td class="best">+57.8%</td>
+            <td class="best">+35.0%</td>
+            <td class="best">$33,213</td>
+            <td><span style="color:var(--green)">✅</span></td>
+            <td><span style="color:var(--green)">✅</span></td>
+          </tr>
+          <tr>
+            <td style="font-size:1.1rem">🥉</td>
+            <td><strong style="color:var(--fg)">GOOGL</strong><br><span style="font-size:.72rem;color:var(--muted)">Alphabet / Google</span></td>
+            <td><span style="color:var(--green);font-weight:800">8.95</span></td>
+            <td>$340</td><td>$431</td>
+            <td class="best">+26.5%</td>
+            <td class="best">+19.0%</td>
+            <td class="best">$20,051</td>
+            <td><span style="color:var(--green)">✅</span></td>
+            <td><span style="color:var(--green)">✅</span></td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted)">#4</td>
+            <td><strong style="color:var(--fg)">CEG</strong><br><span style="font-size:.72rem;color:var(--muted)">Constellation Energy</span></td>
+            <td><span style="color:var(--green);font-weight:800">8.30</span></td>
+            <td>$259</td><td>$338</td>
+            <td class="best">+30.4%</td>
+            <td class="best">+20.0%</td>
+            <td class="best">$20,736</td>
+            <td><span style="color:var(--green)">✅</span></td>
+            <td><span style="color:var(--green)">✅</span></td>
+          </tr>
+          <!-- TIER 2 — no cumplen todos los criterios -->
+          <tr><td colspan="10" style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--yellow);padding:.5rem .8rem;background:#8C6A1A0C">Tier 2 — no cumplen margen ≥20% o CAGR ≥13% al precio actual</td></tr>
+          <tr>
+            <td style="color:var(--muted)">#5</td>
+            <td><strong style="color:var(--fg)">ISRG</strong><br><span style="font-size:.72rem;color:var(--muted)">Intuitive Surgical</span></td>
+            <td><span style="color:var(--green);font-weight:800">8.74</span></td>
+            <td>$438</td><td>$479</td>
+            <td class="warn">+9.3%</td>
+            <td class="best">+18.0%</td>
+            <td class="best">$19,388</td>
+            <td><span style="color:var(--red)">❌</span></td>
+            <td><span style="color:var(--green)">✅</span></td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted)">#6</td>
+            <td><strong style="color:var(--fg)">MSFT</strong><br><span style="font-size:.72rem;color:var(--muted)">Microsoft Corporation</span></td>
+            <td><span style="color:var(--green);font-weight:800">9.10</span></td>
+            <td>$532</td><td>$599</td>
+            <td class="warn">+12.7%</td>
+            <td class="ok">+11.0%</td>
+            <td>$15,181</td>
+            <td><span style="color:var(--red)">❌</span></td>
+            <td><span style="color:var(--red)">❌</span></td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted)">#7</td>
+            <td><strong style="color:var(--fg)">AMZN</strong><br><span style="font-size:.72rem;color:var(--muted)">Amazon.com Inc.</span></td>
+            <td><span style="color:var(--green);font-weight:800">8.29</span></td>
+            <td>$263</td><td>$331</td>
+            <td class="best">+26.2%</td>
+            <td class="warn">+8.0%</td>
+            <td>$13,605</td>
+            <td><span style="color:var(--green)">✅</span></td>
+            <td><span style="color:var(--red)">❌</span></td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted)">#8</td>
+            <td><strong style="color:var(--fg)">META</strong><br><span style="font-size:.72rem;color:var(--muted)">Meta Platforms</span></td>
+            <td><span style="color:var(--green);font-weight:800">8.48</span></td>
+            <td>$694</td><td>$815</td>
+            <td class="warn">+17.3%</td>
+            <td class="ok">+12.0%</td>
+            <td>$15,735</td>
+            <td><span style="color:var(--red)">❌</span></td>
+            <td><span style="color:var(--red)">❌</span></td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted)">#9</td>
+            <td><strong style="color:var(--fg)">ASML</strong><br><span style="font-size:.72rem;color:var(--muted)">ASML Holding NV</span></td>
+            <td><span style="color:var(--green);font-weight:800">8.80</span></td>
+            <td>$1,631</td><td>$2,152</td>
+            <td class="best">+31.9%</td>
+            <td class="warn">+6.0%</td>
+            <td>$12,625</td>
+            <td><span style="color:var(--green)">✅</span></td>
+            <td><span style="color:var(--red)">❌</span></td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted)">#10</td>
+            <td><strong style="color:var(--fg)">V</strong><br><span style="font-size:.72rem;color:var(--muted)">Visa Inc.</span></td>
+            <td><span style="color:var(--green);font-weight:800">9.05</span></td>
+            <td>$407</td><td>$423</td>
+            <td class="warn">+4.0%</td>
+            <td class="warn">+6.0%</td>
+            <td>$12,625</td>
+            <td><span style="color:var(--red)">❌</span></td>
+            <td><span style="color:var(--red)">❌</span></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="divider" style="margin-top:0">
+
+    <div id="core-cards-list"></div>
+
+  </div><!-- /container -->
+</div><!-- /page-core -->
+
+
+<!-- ══════════════════════════════════════════
+     PÁGINA: IDEAS LAB
+══════════════════════════════════════════ -->
+<div class="page" id="page-ideas">
+  <div class="shared-header-slot"></div>
+  <div class="back-bar">
+    <button class="back-btn" onclick="showPage('home')">← Inicio</button>
+    <span class="back-bar-title">⚡ Ideas Lab — 6 empresas</span>
+  </div>
+  <div class="container">
+    <div class="page-header">
+      <div class="page-header-label purple">⚡ Ideas Lab</div>
+      <h2>Mayor riesgo, mayor potencial</h2>
+      <p>Empresas de alta calidad (score &gt; 7) donde el negocio y el precio hacen el trabajo juntos. El CAGR total — ganancia por acción, dividendo y corrección de múltiplos hacia el mercado — debe superar 20% en un horizonte de 3-5 años. Mayor riesgo que Core, mismo rigor analítico. Se rankean entre sí, nunca contra Core.</p>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1rem">
+        <span class="filtro-chip">Score mínimo <span>&gt; 7.0</span></span>
+        <span class="filtro-chip">Margen de seguridad <span>≥ 20%</span></span>
+        <span class="filtro-chip">CAGR total <span>&gt; 20%</span></span>
+        <span class="filtro-chip">Horizonte <span>3–5 años</span></span>
+      </div>
+    </div>
+
+    <div id="ideas-ranking-wrap" style="margin-bottom:2.5rem">
+      <div id="ideas-table-wrap"></div>
+      <div class="ideas-empty" id="ideas-empty" style="display:none">
+        <p>No hay empresas en el Ideas Lab todavía.</p>
+      </div>
+    </div>
+
+    <div id="ideas-cards-list"></div>
+
+    </div>
+
+  </div>
+</div><!-- /page-ideas -->
+
+
+<!-- ══════════════════════════════════════════
+     PÁGINA: CASH
+══════════════════════════════════════════ -->
+<div class="page" id="page-cash">
+  <div class="shared-header-slot"></div>
+  <div class="back-bar">
+    <button class="back-btn" onclick="showPage('home')">← Inicio</button>
+    <span class="back-bar-title">💵 Cash</span>
+  </div>
+  <div class="container">
+
+    <div class="page-header">
+      <div class="page-header-label cash">💵 Cash</div>
+      <h2>¿Dónde estaciono mi cash?</h2>
+      <p>El cash no es un problema a resolver — es una herramienta. Esta guía explica las opciones para hacerlo trabajar, ordenadas de menor a mayor riesgo.</p>
+    </div>
+
+    <!-- POR QUÉ EXISTE EL CASH -->
+    <div style="margin-bottom:2.5rem">
+      <div class="section-label" style="margin-bottom:1.25rem">El cash tiene un rol estratégico</div>
+      <p style="max-width:68ch;margin-bottom:1.25rem">Muchos inversores que empiezan cometen el mismo error: invierten todo. Cero cash. La lógica parece razonable — el dinero parado "no hace nada". Pero esa idea es incorrecta, y entenderlo cambia la forma en que manejás tu cartera.</p>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:1.5rem">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem">
+          <div style="font-size:1.4rem;margin-bottom:.6rem">🎯</div>
+          <h4 style="font-size:.88rem;font-weight:700;color:var(--white);margin-bottom:.35rem">Munición para oportunidades</h4>
+          <p style="font-size:.82rem;margin:0">Cuando el mercado cae 10-15%, los mejores negocios del mundo quedan en descuento. Solo podés comprarlos si tenés cash disponible.</p>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem">
+          <div style="font-size:1.4rem;margin-bottom:.6rem">🛡️</div>
+          <h4 style="font-size:.88rem;font-weight:700;color:var(--white);margin-bottom:.35rem">Amortiguador de volatilidad</h4>
+          <p style="font-size:.82rem;margin:0">Un portafolio con 15-20% en cash cae menos cuando el mercado baja. Reduce la presión psicológica de vender en el peor momento.</p>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem">
+          <div style="font-size:1.4rem;margin-bottom:.6rem">⏱️</div>
+          <h4 style="font-size:.88rem;font-weight:700;color:var(--white);margin-bottom:.35rem">Tiempo para decidir bien</h4>
+          <p style="font-size:.82rem;margin:0">No toda empresa vale el precio que tiene hoy. El cash te permite esperar el precio correcto en lugar de comprar por presión.</p>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem">
+          <div style="font-size:1.4rem;margin-bottom:.6rem">💸</div>
+          <h4 style="font-size:.88rem;font-weight:700;color:var(--white);margin-bottom:.35rem">Necesidades de liquidez</h4>
+          <p style="font-size:.82rem;margin:0">Parte del cash cubre gastos reales de los próximos 6-12 meses. Ese dinero no debería estar en acciones bajo ninguna circunstancia.</p>
+        </div>
+      </div>
+      <div class="quote">
+        <p><strong>El punto clave:</strong> el cash que usás como reserva táctica debe estar disponible y seguro cuando el mercado baja. Si lo invertís en algo que también cae con el mercado, perdiste su función. Más rendimiento generalmente significa más correlación con el mercado — esa es la tensión central.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- TABLA DE OPCIONES -->
+    <div style="margin-bottom:2.5rem">
+      <div class="section-label" style="margin-bottom:1.25rem">Las opciones — de menor a mayor rendimiento</div>
+      <div style="overflow-x:auto;border-radius:12px;border:1px solid var(--border)">
+        <table class="comp-table" style="min-width:700px">
+          <thead>
+            <tr>
+              <th>Ticker</th><th>Yield</th><th>Pago</th>
+              <th>S&P −10% / +10%</th><th>Margen seg.</th><th>Riesgo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:rgba(255,255,255,.02)">
+              <td colspan="6" style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:.5rem .8rem">BASE — REFERENCIA</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--white);font-family:monospace">SGOV</strong><br><span style="font-size:.72rem;color:var(--muted)">iShares 0-3m T-Bill</span></td>
+              <td style="color:var(--muted);font-weight:700">3.65%</td>
+              <td><span style="background:var(--green-dim);color:var(--green);font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:20px">Mensual</span></td>
+              <td style="color:var(--green);font-weight:700">0% / 0%</td>
+              <td style="color:var(--muted)">N/A</td>
+              <td><span class="pill pill-green" style="font-size:.7rem">Soberano</span></td>
+            </tr>
+            <tr style="background:rgba(255,255,255,.02)">
+              <td colspan="6" style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:.5rem .8rem">CATEGORÍA 1 — RIESGO CASI NULO</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--white);font-family:monospace">FLOT</strong><br><span style="font-size:.72rem;color:var(--muted)">iShares Floating Rate</span></td>
+              <td class="best">4.28%</td>
+              <td><span style="background:var(--green-dim);color:var(--green);font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:20px">Mensual</span></td>
+              <td style="color:var(--green);font-weight:700">~0% / ~0%</td>
+              <td style="color:var(--muted)">N/A</td>
+              <td><span class="pill pill-green" style="font-size:.7rem">Mínimo</span></td>
+            </tr>
+            <tr style="background:rgba(255,255,255,.02)">
+              <td colspan="6" style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:.5rem .8rem">CATEGORÍA 2 — RIESGO BAJO-MEDIO</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--white);font-family:monospace">PFF</strong><br><span style="font-size:.72rem;color:var(--muted)">iShares Preferred Stock</span></td>
+              <td class="best">5.65%</td>
+              <td><span style="background:var(--green-dim);color:var(--green);font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:20px">Mensual</span></td>
+              <td style="color:var(--yellow);font-weight:700">~−4.5% / ~+3%</td>
+              <td style="color:var(--muted)">N/A</td>
+              <td><span class="pill pill-yellow" style="font-size:.7rem">Medio-bajo</span></td>
+            </tr>
+            <tr style="background:rgba(255,255,255,.02)">
+              <td colspan="6" style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:.5rem .8rem">CATEGORÍA 3 — RIESGO MEDIO, INCOME ALTO</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--white);font-family:monospace">JEPI</strong><br><span style="font-size:.72rem;color:var(--muted)">JPMorgan Equity Premium</span></td>
+              <td class="best">~8.00%</td>
+              <td><span style="background:var(--green-dim);color:var(--green);font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:20px">Mensual</span></td>
+              <td style="color:var(--yellow);font-weight:700">~−8% / ~+5%</td>
+              <td style="color:var(--muted)">N/A</td>
+              <td><span class="pill pill-yellow" style="font-size:.7rem">Medio</span></td>
+            </tr>
+            <tr style="background:rgba(255,255,255,.02)">
+              <td colspan="6" style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:.5rem .8rem">ACCIONES — YIELD + MARGEN DE SEGURIDAD</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--white);font-family:monospace">BTI</strong><br><span style="font-size:.72rem;color:var(--muted)">British American Tobacco</span></td>
+              <td class="best">5.94%</td>
+              <td><span style="background:var(--blue);color:#fff;opacity:.85;font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:20px">Trimestral</span></td>
+              <td style="color:var(--green);font-weight:700">~−1% / ~+1%</td>
+              <td class="best">+26.9%</td>
+              <td><span class="pill pill-green" style="font-size:.7rem">Beta 0.10</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--white);font-family:monospace">EPD</strong><br><span style="font-size:.72rem;color:var(--muted)">Enterprise Products Partners</span></td>
+              <td class="best">6.21%</td>
+              <td><span style="background:var(--blue);color:#fff;opacity:.85;font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:20px">Trimestral</span></td>
+              <td style="color:var(--green);font-weight:700">~−4.9% / ~+4.9%</td>
+              <td class="ok">+14.5%</td>
+              <td><span class="pill pill-green" style="font-size:.7rem">Beta 0.49</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.72rem;color:var(--muted);margin-top:.75rem">Datos: octubre 2026. Yields trailing 12m. El impacto ante caída del S&P es estimado. No es asesoramiento financiero.</p>
+    </div>
+
+    <hr class="divider">
+
+    <!-- DETALLE POR OPCIÓN -->
+    <div class="section-label" style="margin-bottom:1.5rem">Qué es cada opción</div>
+
+    <!-- SGOV -->
+    <div class="empresa-card" style="margin-bottom:1.25rem">
+      <div class="empresa-header">
+        <div>
+          <div class="empresa-ticker" style="font-family:monospace">SGOV</div>
+          <div class="empresa-nombre">iShares 0-3 Month Treasury Bond ETF</div>
+          <div class="pills" style="margin-top:.5rem">
+            <span class="pill pill-green">Mensual</span>
+            <span class="pill pill-green">Soberano</span>
+            <span class="pill pill-grey">Yield 3.65%</span>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:1.6rem;font-weight:900;color:var(--muted)">3.65%</div>
+          <div class="empresa-score-label">Yield</div>
+        </div>
+      </div>
+      <p>Invierte exclusivamente en letras del Tesoro de EE.UU. con vencimiento menor a 3 meses — el instrumento más seguro del mundo. El rendimiento sigue directamente a la tasa de la Reserva Federal. No hay riesgo de capital: el precio siempre ronda los $100.</p>
+      <p>El problema de SGOV hoy es precisamente su virtud: es tan sensible a las decisiones de la Fed que su rendimiento cae automáticamente con cada recorte de tasas. En 2022-2024 rendía más del 5%. Hoy rende el 3.65%.</p>
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-val">3.65%</div><div class="stat-lbl">Yield actual</div></div>
+        <div class="stat-box"><div class="stat-val green">~0%</div><div class="stat-lbl">Riesgo capital</div></div>
+        <div class="stat-box"><div class="stat-val">Diaria</div><div class="stat-lbl">Liquidez</div></div>
+        <div class="stat-box"><div class="stat-val">0.09%</div><div class="stat-lbl">Expense ratio</div></div>
+      </div>
+    </div>
+
+    <!-- FLOT -->
+    <div class="empresa-card" style="margin-bottom:1.25rem">
+      <div class="empresa-header">
+        <div>
+          <div class="empresa-ticker" style="font-family:monospace">FLOT</div>
+          <div class="empresa-nombre">iShares Floating Rate Bond ETF</div>
+          <div class="pills" style="margin-top:.5rem">
+            <span class="pill pill-green">Mensual</span>
+            <span class="pill pill-green">Mínimo riesgo</span>
+            <span class="pill pill-green">+0.63% vs SGOV</span>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div class="empresa-score-big">4.28%</div>
+          <div class="empresa-score-label">Yield</div>
+        </div>
+      </div>
+      <p>Invierte en bonos corporativos de tasa flotante con vencimientos cortos (0-3 años). "Tasa flotante" significa que el cupón se ajusta periódicamente a una tasa de referencia del mercado, protegiendo el precio cuando las tasas suben. Los 557 emisores incluyen supranacionales como el Banco Mundial más corporaciones con grado de inversión.</p>
+      <p>El spread crediticio adicional le da 63 puntos base más que SGOV con un drawdown máximo de apenas 0.82% en 5 años. La opción más eficiente del segmento cash.</p>
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-val green">4.28%</div><div class="stat-lbl">Yield actual</div></div>
+        <div class="stat-box"><div class="stat-val green">−0.82%</div><div class="stat-lbl">Max drawdown 5yr</div></div>
+        <div class="stat-box"><div class="stat-val">557</div><div class="stat-lbl">Holdings</div></div>
+        <div class="stat-box"><div class="stat-val green">+0.63%</div><div class="stat-lbl">Ventaja vs SGOV</div></div>
+      </div>
+    </div>
+
+    <!-- PFF -->
+    <div class="empresa-card" style="margin-bottom:1.25rem">
+      <div class="empresa-header">
+        <div>
+          <div class="empresa-ticker" style="font-family:monospace">PFF</div>
+          <div class="empresa-nombre">iShares Preferred &amp; Income Securities ETF</div>
+          <div class="pills" style="margin-top:.5rem">
+            <span class="pill pill-green">Mensual</span>
+            <span class="pill pill-yellow">Beta 0.45</span>
+            <span class="pill pill-yellow">Sensible a tasas largas</span>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div class="empresa-score-big">5.65%</div>
+          <div class="empresa-score-label">Yield</div>
+        </div>
+      </div>
+      <p>Las acciones preferidas son un instrumento híbrido entre un bono y una acción. Pagan un dividendo fijo y prioritario (antes que los accionistas comunes), pero su precio fluctúa con las tasas de interés. PFF invierte en más de 500 emisores preferidos, con fuerte peso en el sector financiero.</p>
+      <p>El rendimiento es mayor que SGOV, pero hay un trade-off real: el precio puede caer entre 4-6% si el mercado cae, y es sensible a subidas de tasas de largo plazo. No es cash — es un instrumento con comportamiento similar al de un bono largo.</p>
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-val green">5.65%</div><div class="stat-lbl">Yield actual</div></div>
+        <div class="stat-box"><div class="stat-val yellow">0.45</div><div class="stat-lbl">Beta vs S&P</div></div>
+        <div class="stat-box"><div class="stat-val">500+</div><div class="stat-lbl">Holdings</div></div>
+        <div class="stat-box"><div class="stat-val green">+2.0%</div><div class="stat-lbl">Ventaja vs SGOV</div></div>
+      </div>
+    </div>
+
+    <!-- JEPI -->
+    <div class="empresa-card" style="margin-bottom:1.25rem">
+      <div class="empresa-header">
+        <div>
+          <div class="empresa-ticker" style="font-family:monospace">JEPI</div>
+          <div class="empresa-nombre">JPMorgan Equity Premium Income ETF</div>
+          <div class="pills" style="margin-top:.5rem">
+            <span class="pill pill-green">Mensual</span>
+            <span class="pill pill-yellow">Beta ~0.55</span>
+            <span class="pill pill-red">Ordinary income tax</span>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div class="empresa-score-big">~8%</div>
+          <div class="empresa-score-label">Yield</div>
+        </div>
+      </div>
+      <p>JEPI compra acciones defensivas del S&P 500 (ninguna posición supera el 2%) y simultáneamente vende opciones de compra sobre ese portafolio. La prima de esas opciones es la fuente principal del alto yield mensual.</p>
+      <p>Captura aproximadamente el 50-60% del upside del S&P en rallies, pero cae menos en correcciones (beta ~0.55). No es sustituto del cash — es un escalón diferente. Las distribuciones tributan como ordinary income, no como qualified dividends.</p>
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-val green">~8.0%</div><div class="stat-lbl">Yield actual</div></div>
+        <div class="stat-box"><div class="stat-val yellow">~0.55</div><div class="stat-lbl">Beta vs S&P</div></div>
+        <div class="stat-box"><div class="stat-val red">~−14%</div><div class="stat-lbl">Max drawdown hist.</div></div>
+        <div class="stat-box"><div class="stat-val yellow">~+5-6%</div><div class="stat-lbl">Si S&P +10%</div></div>
+      </div>
+      <div class="note-box"><p>⚠️ Distribuciones como ordinary income — puede impactar el rendimiento neto según tu tramo impositivo.</p></div>
+    </div>
+
+    <!-- BTI -->
+    <div class="empresa-card" style="margin-bottom:1.25rem">
+      <div class="empresa-header">
+        <div>
+          <div class="empresa-ticker" style="font-family:monospace">BTI</div>
+          <div class="empresa-nombre">British American Tobacco (ADR)</div>
+          <div class="pills" style="margin-top:.5rem">
+            <span class="pill pill-blue">Trimestral</span>
+            <span class="pill pill-green">Beta 0.10</span>
+            <span class="pill pill-green">Mrg seg. +26.9%</span>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div class="empresa-score-big">5.94%</div>
+          <div class="empresa-score-label">Yield</div>
+        </div>
+      </div>
+      <p>BTI opera en más de 180 países con marcas como Lucky Strike, Dunhill y Camel. Su modelo de negocio tiene pricing power excepcional: puede subir precios todos los años porque sus clientes son altamente inelásticos. El resultado es un negocio que genera caja de forma predecible, año tras año, sin importar el ciclo económico.</p>
+      <p>Su beta de 0.10 es el más bajo de la lista — prácticamente no correlaciona con el mercado. Eso la convierte en una de las acciones más "cash-like" que existen, con un yield casi 2.3 puntos porcentuales mayor que SGOV y un margen de seguridad del 27%.</p>
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-val">$55.50</div><div class="stat-lbl">Precio actual</div></div>
+        <div class="stat-box"><div class="stat-val green">$70.43</div><div class="stat-lbl">Target analistas</div></div>
+        <div class="stat-box"><div class="stat-val">41%</div><div class="stat-lbl">Payout ratio</div></div>
+        <div class="stat-box"><div class="stat-val">25+</div><div class="stat-lbl">Años aumentando div.</div></div>
+      </div>
+      <div class="note-box"><p>⚠️ ADR en NYSE — verificar impacto fiscal con tu contador.</p></div>
+    </div>
+
+    <!-- EPD -->
+    <div class="empresa-card" style="margin-bottom:1.25rem">
+      <div class="empresa-header">
+        <div>
+          <div class="empresa-ticker" style="font-family:monospace">EPD</div>
+          <div class="empresa-nombre">Enterprise Products Partners LP</div>
+          <div class="pills" style="margin-top:.5rem">
+            <span class="pill pill-blue">Trimestral</span>
+            <span class="pill pill-green">Beta 0.49</span>
+            <span class="pill pill-yellow">28 años creciendo</span>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div class="empresa-score-big">6.21%</div>
+          <div class="empresa-score-label">Yield</div>
+        </div>
+      </div>
+      <p>EPD opera más de 50.000 millas de gasoductos, oleoductos, terminales y plantas de procesamiento en EE.UU. Su modelo es "fee-based" — cobra un peaje fijo por el volumen que fluye por su infraestructura, independientemente del precio del petróleo o el gas. Predictibilidad de ingresos similar a una utility.</p>
+      <p>Ha aumentado su distribución durante 28 años consecutivos. Es una sociedad limitada (MLP) — reporta con formulario K-1 en lugar del habitual 1099-DIV, lo que requiere coordinación con un contador.</p>
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-val">$36.08</div><div class="stat-lbl">Precio actual</div></div>
+        <div class="stat-box"><div class="stat-val green">$41.33</div><div class="stat-lbl">Target analistas</div></div>
+        <div class="stat-box"><div class="stat-val">28 años</div><div class="stat-lbl">Dist. creciente</div></div>
+        <div class="stat-box"><div class="stat-val green">Fee-based</div><div class="stat-lbl">Modelo negocio</div></div>
+      </div>
+      <div class="note-box"><p>⚠️ MLP — reporta con formulario K-1, consultar con tu contador antes de comprar.</p></div>
+    </div>
+
+    <p style="font-size:.75rem;color:var(--muted);margin-top:1.5rem">Este documento es educativo. No constituye asesoramiento financiero personalizado. Todos los rendimientos y datos son a octubre de 2026.</p>
+
+  </div>
+</div><!-- /page-cash -->
+
+
+<script>
+// ── SHARED HEADER INJECTION ──────────────────────────────
+function injectHeaders(){
+  const tpl=document.getElementById('shared-header-tpl');
+  document.querySelectorAll('.shared-header-slot').forEach(slot=>{
+    slot.appendChild(document.importNode(tpl.content,true));
+  });
+}
+
+// ── PAGE NAVIGATION ──────────────────────────────────────
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const map={home:'page-filosofia',filosofia:'page-filosofia',core:'page-core',ideas:'page-ideas',cash:'page-cash',sim:'page-sim'};
+  const el=document.getElementById(map[name]||'page-filosofia');
+  if(el){
+    el.classList.add('active');
+    window.scrollTo(0,0);
+    if(name==='ideas') renderIdeas();
+    if(name==='core') renderCore();
+    if(name==='sim'){ window.simLoadSliders(); window.simEnsureChart(window.simRender); }
+    // highlight active nav card
+    document.querySelectorAll('.nav-card').forEach(c=>c.classList.remove('nav-card-active'));
+    document.querySelectorAll('.nav-card-'+name).forEach(c=>c.classList.add('nav-card-active'));
+  }
+}
+
+injectHeaders();
+
+// ── REVEAL ANIMATIONS ────────────────────────────────────
+function setupReveal(){
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        e.target.querySelectorAll('.score-bars').forEach(sb=>animateBars(sb));
+      }
+    });
+  },{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}
+
+// Shared IntersectionObserver for score-bar animation
+const cardIo=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.score-bars:not([data-built])').forEach(sb=>animateBars(sb));
+    }
+  });
+},{threshold:0.05});
+function observeCards(container){
+  container.querySelectorAll('.empresa-card').forEach(c=>cardIo.observe(c));
+}
+
+function animateBars(container){
+  if(container.dataset.built)return;
+  container.dataset.built='1';
+  const scores=JSON.parse(container.dataset.scores);
+  const labels=JSON.parse(container.dataset.labels);
+  container.innerHTML='';
+  scores.forEach((sc,i)=>{
+    const color=sc>=8.5?'var(--green)':sc>=6.5?'var(--yellow)':'var(--red)';
+    const row=document.createElement('div');
+    row.className='bar-row';
+    row.innerHTML=`<span class="bar-label">${labels[i]}</span>
+      <div class="bar-track"><div class="bar-fill" style="background:${color}" data-target="${sc*10}"></div></div>
+      <span class="bar-val">${sc}</span>`;
+    container.appendChild(row);
+    setTimeout(()=>{row.querySelector('.bar-fill').style.width=(sc*10)+'%';},80+i*60);
+  });
+}
+
+// ── IDEAS LAB ─────────────────────────────────────────────
+const DIMS=[
+  {key:'moat',   label:'Wide Moat',    peso:.20},
+  {key:'pricing',label:'Pricing Power',peso:.18},
+  {key:'roic',   label:'ROIC',         peso:.15},
+  {key:'balance',label:'Balance',      peso:.12},
+  {key:'crec',   label:'Crecimiento',  peso:.15},
+  {key:'struct', label:'Ventajas Est.',peso:.12},
+  {key:'beta',   label:'Beta Def.',    peso:.08},
+];
+function loadIdeas(){try{return JSON.parse(localStorage.getItem('ideas-lab-v1')||'[]');}catch(e){return[];}}
+function saveIdeas(arr){try{localStorage.setItem('ideas-lab-v1',JSON.stringify(arr));}catch(e){}}
+function calcScore(dims){return DIMS.reduce((sum,d,i)=>sum+(dims[i]*d.peso),0);}
+function scoreColor(sc){return sc>=8.5?'var(--green)':sc>=7.0?'var(--yellow)':'var(--red)';}
+function fmtPct(v){return(v>=0?'+':'')+v.toFixed(1)+'%';}
+function fmtUSD(v){return'$'+Math.round(v).toLocaleString('en-US');}
+function pctColor(v,t){return v>=t?'green':v>=(t*.6)?'yellow':'red';}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function rankScore(idea){
+  // Ideas Lab rank: 60% CAGR + 40% Score (sin T1 binary, sin margen)
+  // CAGR satura en 75% (CAGR/50 cap a 1.5). Max = 0.90 + 0.40 = 1.30
+  const c = idea.cagr || 0;
+  const s = idea.score || 0;
+  return 0.60 * Math.min(c/50, 1.5) + 0.40 * (s/10);
+}
+
+function renderIdeas(){
+  const raw=loadIdeas();
+  const ideas=raw.slice().sort((a,b)=>rankScore(b)-rankScore(a));
+  const tableWrap=document.getElementById('ideas-table-wrap');
+  const list=document.getElementById('ideas-list');
+  const empty=document.getElementById('ideas-empty');
+  if(!ideas.length){tableWrap.innerHTML='';list.innerHTML='';empty.style.display='';return;}
+  empty.style.display='none';
+  const yr=new Date().getFullYear();
+  let tHead=`<tr>
+    <th style="text-align:left">Rank</th><th style="text-align:left">Empresa</th>
+    <th>Score</th><th>Precio</th><th>Target</th><th>Margen</th><th>CAGR</th>
+    <th>$10K→${yr+3}</th><th>Mrg ≥20%</th><th>CAGR ≥13%</th></tr>`;
+  let tRows='';
+  ideas.forEach((idea,idx)=>{
+    const rankEmoji=idx===0?'🥇':idx===1?'🥈':idx===2?'🥉':`#${idx+1}`;
+    const sc=idea.score;
+    const scStyle=`color:${scoreColor(sc)};font-weight:800`;
+    let margenCell='<span style="color:var(--muted)">—</span>';
+    let cagrCell='<span style="color:var(--muted)">—</span>';
+    let projCell='<span style="color:var(--muted)">—</span>';
+    let mFilter='<span style="color:var(--muted)">—</span>';
+    let cFilter='<span style="color:var(--muted)">—</span>';
+    let targetCell='<span style="color:var(--muted)">—</span>';
+    let precioCell=idea.precio?fmtUSD(idea.precio):'—';
+    if(idea.precio&&idea.target&&idea.cagr!=null){
+      const margen=((idea.target-idea.precio)/idea.precio)*100;
+      const h=idea.horizonte||3;
+      const proj=10000*Math.pow(1+idea.cagr/100,h);
+      const mC=pctColor(margen,20);const cC=pctColor(idea.cagr,13);
+      margenCell=`<span class="${mC}" style="font-weight:700">${fmtPct(margen)}</span>`;
+      cagrCell=`<span class="${cC}" style="font-weight:700">${fmtPct(idea.cagr)}</span>`;
+      projCell=`<span style="font-weight:700;color:var(--white)">${fmtUSD(proj)}</span>`;
+      targetCell=fmtUSD(idea.target);
+      mFilter=margen>=20?'<span style="color:var(--green)">✅</span>':'<span style="color:var(--red)">❌</span>';
+      cFilter=idea.cagr>=13?'<span style="color:var(--green)">✅</span>':'<span style="color:var(--red)">❌</span>';
+    }
+    tRows+=`<tr>
+      <td style="font-size:1.1rem">${rankEmoji}</td>
+      <td><strong style="color:var(--white)">${esc(idea.ticker)}</strong><br><span style="font-size:.72rem;color:var(--muted)">${esc(idea.nombre)}</span></td>
+      <td><span style="${scStyle}">${sc.toFixed(2)}</span></td>
+      <td style="font-variant-numeric:tabular-nums">${precioCell}</td>
+      <td style="font-variant-numeric:tabular-nums">${targetCell}</td>
+      <td>${margenCell}</td><td>${cagrCell}</td>
+      <td style="font-variant-numeric:tabular-nums">${projCell}</td>
+      <td style="text-align:center">${mFilter}</td>
+      <td style="text-align:center">${cFilter}</td></tr>`;
+  });
+  tableWrap.innerHTML=`
+    <div style="margin-bottom:1rem;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap">
+      <span style="font-size:.85rem;font-weight:700;color:var(--white)">⚡ Ranking Ideas Lab</span>
+      <span style="font-size:.72rem;color:var(--purple);font-weight:600">${ideas.length} ${ideas.length===1?'empresa':'empresas'}</span>
+      <span style="font-size:.68rem;color:var(--muted);margin-left:auto">Ordenado por: CAGR 60% · Score 40%</span>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="comp-table" style="min-width:700px"><thead>${tHead}</thead><tbody>${tRows}</tbody></table>
+    </div>`;
+  // Render detail cards in ranked order
+  const cardsList=document.getElementById('ideas-cards-list');
+  if(cardsList){
+    cardsList.innerHTML='';
+    ideas.forEach((idea,idx)=>{
+      const content=IDEAS_CONTENT[idea.ticker];
+      if(!content)return;
+      const sc=idea.score;
+      const margen=idea.precio&&idea.target?((idea.target-idea.precio)/idea.precio)*100:null;
+      const proj=idea.cagr!=null&&idea.horizonte?10000*Math.pow(1+idea.cagr/100,idea.horizonte):null;
+      const meetsAll=sc>7&&idea.cagr>20&&margen>=20;
+      const tier2=sc<=7||idea.cagr<=20||(margen!==null&&margen<20);
+      const rankLabel=idx===0?'🥇 #1 — Tier 1':idx===1?'🥈 #2 — Tier 1':idx===2?'🥉 #3 — Tier 1':
+        (meetsAll?`⚡ #${idx+1} — Tier 1`:`#${idx+1} — Tier 2`);
+      const badgeClass=meetsAll?'badge-rank-'+(idx<3?idx+1:'n'):'badge-rank-n';
+      const scColor=sc>=8.5?'var(--green)':sc>=7.0?'var(--yellow)':'var(--red)';
+      const dimsAttr=JSON.stringify(idea.dims);
+      const labelsAttr=JSON.stringify(['Wide Moat','Pricing Power','ROIC','Balance','Crecimiento','Ventajas','Beta Def.']);
+      const margenStr=margen!==null?fmtPct(margen):'—';
+      const margenClass=margen>=20?'green':margen>=12?'yellow':'red';
+      const cagrStr=idea.cagr!=null?fmtPct(idea.cagr):'—';
+      const cagrClass=idea.cagr>=20?'green':idea.cagr>=13?'yellow':'red';
+      const projStr=proj?fmtUSD(proj):'—';
+      const div=document.createElement('div');
+      div.className='empresa-card';
+      div.innerHTML=`
+        <div class="empresa-rank-badge ${badgeClass}">${esc(rankLabel)}</div>
+        <div class="empresa-header">
+          <div>
+            <div class="empresa-ticker">${esc(idea.ticker)}</div>
+            <div class="empresa-nombre">${esc(idea.nombre)}</div>
+            <div class="pills" style="margin-top:.5rem">${content.pills}<span class="pill pill-muted">P/E ${idea.peActual}x</span></div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:2rem;font-weight:900;color:${scColor}">${sc.toFixed(2)}</div>
+            <div class="empresa-score-label">Score / 10</div>
+          </div>
+        </div>
+        <p style="color:var(--fg);font-size:.9rem"><strong>¿Qué hace?</strong> ${content.queHace}</p>
+        <div class="score-bars" data-scores='${dimsAttr}' data-labels='${labelsAttr}'></div>
+        <div class="stats-row">
+          <div class="stat-box"><div class="stat-val">${idea.precio?fmtUSD(idea.precio):'—'}</div><div class="stat-lbl">Precio · oct 20</div></div>
+          <div class="stat-box"><div class="stat-val ${margenClass}">${margenStr}</div><div class="stat-lbl">Margen seguridad</div></div>
+          <div class="stat-box"><div class="stat-val ${cagrClass}">${cagrStr}</div><div class="stat-lbl">CAGR base</div></div>
+          <div class="stat-box"><div class="stat-val">${projStr}</div><div class="stat-lbl">$10K a ${idea.horizonte}a</div></div>
+        </div>
+        <div class="quote"><p>${content.quote}</p></div>
+        <p style="font-size:.85rem;color:var(--fg);margin-bottom:.5rem"><strong>Tesis:</strong> ${content.tesis}</p>
+        <p style="font-size:.85rem;color:var(--fg);margin-bottom:0"><strong>Riesgos:</strong> ${content.riesgos}</p>`;
+      cardsList.appendChild(div);
+    });
+    observeCards(cardsList);
+  }
+}
+
+// ── CAGR CALCULATION FROM FUNDAMENTALS ───────────────────
+// P/E exit scale — 7 tramos (acordado oct 2026)
+// Lógica: a mayor P/E actual, se asume mayor compresión al horizonte
+function exitPE(peActual){
+  if(peActual < 10)  return 12.5;
+  if(peActual < 15)  return 14;
+  if(peActual < 20)  return 17.5;
+  if(peActual < 30)  return Math.min(peActual, 25); // sale al PE actual o 25x si ya supera
+  if(peActual < 40)  return 30;
+  if(peActual < 50)  return 35;
+  return 40;
+}
+// formula: (EPS_horizon * exitPE / precio)^(1/N) - 1 + divYield
+function computeCAGR(precio, eps, peActual, horizonte, divYield){
+  if(!eps||!precio||horizonte<=0) return 0;
+  const priceFuture = eps * exitPE(peActual);
+  const cagr = Math.pow(priceFuture / precio, 1/horizonte) - 1 + (divYield||0)/100;
+  return Math.round(cagr * 1000) / 10; // % con 1 decimal
+}
+
+// ── SEED IDEAS ────────────────────────────────────────────
+function seedDefaultIdeas(){
+  // v9: EPS verificados vía consenso stockanalysis.com + escala P/E 7 tramos (oct 2026)
+  // Limpia seeds anteriores
+  ['v1','v2','v3','v4','v5','v6','v7','v8','v9','v10','v11','v12','v13','v14','v15','v16'].forEach(v=>{try{localStorage.removeItem('ideas-lab-seeded-'+v);}catch(e){}});
+  if(localStorage.getItem('ideas-lab-seeded-v17'))return;
+  try{localStorage.setItem('ideas-lab-seeded-v17','1');}catch(e){}
+  // eps = consenso analistas para año horizonte | peActual = P/E fwd | divYield = % anual
+  const seeds=[
+    {ticker:'APP',nombre:'AppLovin Corporation',
+      notas:'AXON AI engine — AdTech móvil con FCF margin >65%. Caída 63% desde máx por overhang regulatorio SEC. Upside asimétrico si investigación concluye sin penalidad material. EPS consenso 2028: $31.06 (consenso 18 analistas, rango $23–$38). P/E actual ~27x → exit P/E 25x (tramo 20–30x, activo < 25x).',
+      precio:272.46,target:480.08,eps:31.06,peActual:27,horizonte:3,divYield:0,
+      dims:[7.5,8.5,9.0,7.0,9.5,8.0,3.0],ts:Date.now()-6000},
+    {ticker:'FTAI',nombre:'FTAI Aviation Ltd.',
+      notas:'MRO módulos CFM56/V2500 — modelo asset-light de altísimo ROIC. Cotiza $164 vs pico $323 (-49% desde máx). Consensus: $346 target (+110%), 8 Buy / 2 Hold. 1 rating post-sep: Barclays $310 (sep 15). Alta deuda pero FCF sólido. EPS consenso FY2028: $15.93 (extrapolado 2027→2028 al mismo crecimiento). P/E actual ~43x → exit P/E 35x. Div ~$1.20/año.',
+      precio:157.95,target:346.45,eps:15.93,peActual:43,horizonte:3,divYield:0.73,
+      dims:[7.0,7.5,8.0,5.5,8.5,7.5,6.0],ts:Date.now()-5000},
+    {ticker:'MU',nombre:'Micron Technology',
+      notas:'HBM3E líder para IA/HPC — único pure-play público en DRAM de alto ancho de banda. Contratos LP con NVIDIA/AMD. EPS consenso FY2028: $204.47 (consenso amplio, rango $161–$215 — alta dispersión refleja incertidumbre cíclica). P/E actual ~113x (precio $879 / EPS TTM ~$8) → exit P/E 40x (tramo >50x). Div ~0.5%.',
+      precio:896.07,target:1561,eps:235,peActual:113,horizonte:3,divYield:0.5,
+      dims:[5.5,6.0,8.5,7.0,9.5,5.0,2.0],ts:Date.now()-4000},
+    {ticker:'VST',nombre:'Vistra Corp.',
+      notas:'Generador nuclear+gas con PPAs LP con Meta y AWS. Proxy energía IA. EBITDA Q2 +30% YoY. Cogentrix ~$700M EBITDA 2027. BMO $210 (oct 5), Bernstein $181 (oct 1). EPS consenso 2028: $14.76 (extrapolado a cap 25%/año). P/E actual ~22x → exit P/E 22x (tramo 20–30x, actual ≤ 25x). Div ~1.5%.',
+      precio:150.32,target:210.10,eps:14.76,peActual:22,horizonte:3,divYield:1.5,
+      dims:[7.0,8.0,7.5,6.5,8.5,7.5,4.5],ts:Date.now()-3000},
+    {ticker:'WMS',nombre:'Advanced Drainage Systems',
+      notas:'Único fabricante HDPE pipe con red nacional en EEUU. ROIC 27%. IIJA infraestructura. Precio $128. Oppenheimer $185 (oct 9). Consensus 8 Buy / 2 Hold, target avg $182. EPS consenso 2028: $8.16 (extrapolado). P/E actual ~23x → exit P/E 23x (tramo 20–30x, actual ≤ 25x).',
+      precio:130.16,target:181.73,eps:8.16,peActual:23,horizonte:3,divYield:0,
+      dims:[8.0,7.5,8.5,7.5,7.5,7.5,6.5],ts:Date.now()-2000},
+    {ticker:'IREN',nombre:'IREN Limited',
+      notas:'Transición de Bitcoin mining a infraestructura AI cloud (GPUs, data centers, cooling). EPS aún negativo (TTM -$2.22) pero trayectoria hacia +$1.14 en 2030. EPS normalizado entrada $0.30 (conservador). Precio $27 vs consensus analistas post-sep $78 (+189% upside implícito). 4 Buy / 1 Hold. Revenue TTM $707M +41% YoY. Score bajo (5.5) refleja moat no confirmado y transición en curso.',
+      precio:26.62,target:77.81,eps:0.30,peActual:101,horizonte:4,divYield:0,
+      dims:[4.0,3.5,3.0,4.5,8.5,4.0,2.5],ts:Date.now()-1000},
+    {ticker:'AXON',nombre:'Axon Enterprise Inc.',
+      notas:'Monopolio de facto en tecnología para seguridad pública. Ecosistema cerrado: hardware + Evidence.com + datos de IA. Caída ~35% desde máximos. 18 Buy / 3 Hold / 0 Sell. Northland $800, Needham $870 (oct 2026). Target avg post-sep $691. EPS consenso 2028: $19.21 (consenso 22 analistas). P/E actual ~52x → exit P/E 40x (tramo >50x).',
+      precio:392.64,target:690.68,eps:19.21,peActual:52,horizonte:3,divYield:0,
+      dims:[9.0,8.5,8.5,7.5,9.0,9.0,6.5],ts:Date.now()-800},
+    {ticker:'FICO',nombre:'Fair Isaac Corporation',
+      notas:'Monopolio crediticio con moat hipotecario parcialmente comprometido. FHFA (sep 28) equiparó VantageScore con FICO en grillas de Fannie/Freddie. Target consenso post-1 sep: ~$1,032. 10 Buy / 4 Hold / 2 Sell. Barclays Overweight $875. Needham Buy $1.100. EPS consenso 2028: $68.32 (consenso 12 analistas). P/E actual ~18x → exit P/E 17.5x (tramo 15–20x).',
+      precio:799.73,target:1032,eps:68.32,peActual:18,horizonte:3,divYield:0,
+      dims:[7.0,7.5,9.0,8.0,7.5,8.0,7.5],ts:Date.now()-600},
+    {ticker:'CPRT',nombre:'Copart Inc.',
+      notas:'Red de subastas de autos totalizados con 200+ locaciones. Irrepetible en 15-20 años. Parcialmente contracíclico. FCF margin ~25%, ROIC sostenido. BNP $43 (sep 28), JPMorgan upgrade OW $40 (sep 3). Target avg post-sep $39. EPS consenso 2028: $1.79 (consenso 14 analistas). P/E actual ~17x → exit P/E 17x (tramo 15–20x).',
+      precio:27.83,target:39,eps:1.79,peActual:17,horizonte:3,divYield:0,
+      dims:[8.5,8.0,8.5,9.0,7.5,8.5,8.0],ts:Date.now()-400},
+    {ticker:'MSCI',nombre:'MSCI Inc.',
+      notas:'Infraestructura financiera crítica — índices benchmark para trillones en AUM global. Switching cost estructural. Fees sobre AUM con leverage operativo implícito. JPM $685, MS $662, WF $685 post-sep. Target avg post-sep $673. EPS consenso 2028: $29.14 (consenso 16 analistas). P/E actual ~28x → exit P/E 25x (tramo 20–30x). Div ~1.5%.',
+      precio:591.69,target:672.94,eps:29.14,peActual:28,horizonte:3,divYield:1.5,
+      dims:[8.5,8.5,8.5,8.0,7.5,8.5,7.5],ts:Date.now()}
+  ];
+  seeds.forEach(s=>{
+    s.id=s.ticker+'_'+s.ts;
+    s.score=parseFloat(calcScore(s.dims).toFixed(2));
+    s.cagr=computeCAGR(s.precio,s.eps,s.peActual,s.horizonte,s.divYield);
+  });
+  saveIdeas(seeds);
+}
+
+// ── IDEAS LAB CONTENT ────────────────────────────────────
+const IDEAS_CONTENT={
+  APP:{
+    pills:'<span class="pill pill-yellow">Score 7.84</span><span class="pill pill-green">CAGR +43%</span><span class="pill pill-red">⚠️ Riesgo legal</span>',
+    queHace:'AppLovin opera AXON, un motor de machine learning propietario que optimiza la monetización de apps móviles. El negocio original — gaming móvil — genera cash flows altísimos que financian la expansión de AXON hacia e-commerce (AppLovin MAX + Ecommerce). FCF margin &gt;65%, ROIC &gt;100%. Cotiza $266, acumulando una caída del 50% desde el máximo histórico de $535, impulsado por las investigaciones regulatorias (SEC + class action) y recortes masivos de targets por parte de analistas durante septiembre-octubre 2026.',
+    quote:'"⚠️ Señal de alerta: 8 de 11 analistas post-1 sep recortaron targets. Jefferies: $550→$375 (oct 8). Morgan Stanley: $450→$400 (oct 13). Wedbush: $610→$560 (oct 14). Oppenheimer: $560→$490 (oct 12). HSBC: $450→$409 (oct 5). Consensus actual (28 analistas): 17 Buy / 8 Hold / 3 Strong Buy. Target promedio $480 — bajó ~$30 respecto al mes anterior. El consenso sigue siendo constructivo pero con mucha menos convicción en el precio."',
+    tesis:'AXON es el algoritmo más eficiente del mercado para monetización de apps móviles — ventaja estructural basada en data y feedback loop de ~5 años de entrenamiento imposible de replicar rápidamente. La caída del 63% desde máximos es impulsada por overhang regulatorio, no por deterioro del negocio. Revenue Q2 2026 creció +40% YoY, FCF margin se expandió. Si la investigación SEC concluye sin penalidad material, el múltiplo se normaliza y el upside es asimétrico. La expansión a e-commerce es una segunda palanca de crecimiento que el mercado aún no pricefull.',
+    riesgos:'(1) Investigación SEC / class action — el riesgo más real y la razón del descuento. Una penalidad material o restricción operativa cambiaría el tesis. (2) Google y Meta pueden escalar competencia en AdTech móvil con recursos casi ilimitados. (3) La expansión a e-commerce aún no tiene track record de escala. (4) Alta deuda neta (~$3.5B) — aunque cubierta por FCF, limita opcionalidad en escenario de estrés. Beta Defensivo 3.0 — altamente correlacionada con ciclo tech: caídas de mercado la golpean desproporcionadamente.'
+  },
+  FTAI:{
+    pills:'<span class="pill pill-yellow">Score 7.55</span><span class="pill pill-green">CAGR +57%</span><span class="pill pill-blue">MRO asset-light</span>',
+    queHace:'FTAI Aviation es la empresa de MRO (mantenimiento, reparación y overhaul) de módulos de motores CFM56 y V2500 — los motores que impulsan la flota narrow-body global (Airbus A320, Boeing 737). Su modelo asset-light vende módulos recertificados a aerolíneas y lesores a precios muy inferiores a los OEM (GE, Safran), con ROIC extraordinario. Cotiza $158 vs su pico histórico de $323, una caída del 51% que exagera el riesgo percibido de su estructura de deuda.',
+    quote:'"1 rating post-sep: Barclays Overweight $310 (sep 15). Consensus pre-sep: 8 Buy / 2 Hold. Target promedio $346 (+110%). High $350. El mercado está descontando la deuda de manera excesiva, ignorando la predictibilidad del FCF del negocio MRO y los contratos de largo plazo firmados con aerolíneas Tier 1."',
+    tesis:'El parque de motores CFM56/V2500 tiene vida operativa de 20-25 años y la flota global narrow-body envejece — la demanda de MRO es secular y creciente. FTAI tiene ventaja de costos real frente al OEM: sus módulos cuestan 30-40% menos y acortan el turnaround. El mercado tiene inventory constraints hasta 2028-2030 mínimo. A $158 cotiza a múltiplos de estrés, cuando el FCF es sólido y predecible. Un re-rating al múltiplo histórico implica +119% upside.',
+    riesgos:'(1) Alta deuda neta (~$3.5B) — si las tasas de interés suben o el FCF cae, la estructura financiera se vuelve frágil. (2) Concentración de plataforma: el 90%+ del revenue viene de CFM56/V2500 — si una nueva plataforma captura la flota narrow-body más rápido de lo esperado, el TAM se contrae. (3) Competencia OEM: GE Aerospace y Safran están invirtiendo en reducir el tiempo de mantenimiento propio, lo que comprime el diferencial de precio de FTAI. (4) Riesgo de ejecución: el modelo asset-light requiere mantener un pipeline constante de módulos — cualquier ruptura de suministro impacta revenue inmediatamente.'
+  },
+  MU:{
+    pills:'<span class="pill pill-red">Score 6.48</span><span class="pill pill-green">CAGR +118%</span><span class="pill pill-yellow">HBM3E IA</span>',
+    queHace:'Micron Technology es el único fabricante estadounidense de DRAM y NAND de escala mundial, y la única forma de invertir en HBM (High Bandwidth Memory) fuera de Samsung y SK Hynix. Su producto HBM3E es la memoria de mayor ancho de banda del mercado, utilizada en los aceleradores de IA de NVIDIA y AMD. Sin el driver de IA, MU es un negocio altamente cíclico con moat débil. Con el driver de IA, los contratos de largo plazo con hyperscalers le dan predictibilidad inédita en su historia.',
+    quote:'"Consensus 28 analistas (oct 2026): 27 Buy / 1 Hold. Target promedio $1,561 (+77.7%). High: $2,000 (Barclays, oct 1; Rosenblatt, oct 1). JPMorgan Buy $1,540 (oct 6). BofA Buy $1,550 (oct 1). El mercado sigue penalizando el ciclo histórico sin incorporar el cambio estructural que introduce la demanda de HBM para IA."',
+    tesis:'MU es la única forma de invertir en el crecimiento de HBM fuera de Samsung y SK Hynix, con ventaja de ser la empresa pública más pura. El HBM3E tiene lead time de 12-18 meses y Micron ya tiene contratos de largo plazo con NVIDIA y AMD. El mercado de DRAM de IA es la primera subcategoría con pricing power real en la historia de la industria — los grandes hyperscalers no pueden sustituir el proveedor sin interrumpir su roadmap. A $879 cotiza a ~10x EPS FY2026E — múltiplo de ciclo bajo en una empresa en plena expansión de margen.',
+    riesgos:'(1) Score 6.48 — el moat es débil vs los líderes Core: sin el driver de IA, MU vuelve a ser un commodity. (2) Ciclicalidad severa: históricamente los overshoots de capacidad colapsan el precio de DRAM en 12-18 meses. (3) Competencia: Samsung y SK Hynix tienen mayor escala, costos menores y más años en HBM — cualquier aceleración de su producción presiona el pricing. (4) Beta altísima (2.0): en correcciones de mercado cae 2x el índice. (5) Capex masivo: requiere inversiones de $20B+ anuales para mantenerse competitivo — genera destrucción de FCF en ciclos de expansión.'
+  },
+  VST:{
+    pills:'<span class="pill pill-yellow">Score 7.60</span><span class="pill pill-green">CAGR +41%</span><span class="pill pill-purple">Nuclear + Gas AI</span>',
+    queHace:'Vistra es el mayor generador de energía independiente de EEUU: opera ~41 GW de capacidad instalada entre nuclear, gas natural y renovables. Su activo estrella es Comanche Peak (nuclear, Texas) y la plataforma Luminant de gas. En 2025-2026 firmó Power Purchase Agreements de largo plazo con Meta y AWS para alimentar data centers con energía nuclear 24/7, convirtiéndose en el proxy más puro de la demanda de energía de IA dentro del mercado eléctrico americano. Su brazo retail TXU Energy sirve ~5 millones de clientes en Texas con margen estable.',
+    quote:'"Ratings post-1 sep: BMO Capital Outperform $231→$210 (oct 5). Siebert Williams Shank iniciada Buy $202 (oct 2). Williams Trading target $202 (oct 2). Bernstein Outperform $181 (oct 1). Consensus (oct 2026): Outperform. Target promedio ~$202–$210. El precio subió de $151 a $162 desde el análisis anterior — el margen de seguridad se redujo del +38.5% al +25%."',
+    tesis:'VST es el único activo listado que combina capacidad nuclear operativa + contratos de largo plazo con hyperscalers + 5 millones de clientes retail en el mercado más dinámico de energía de EEUU (ERCOT). Los PPAs con Meta y AWS todavía no están en los estimados de consenso para 2027 — cuando entren, hay revisión al alza. La adquisición de Cogentrix (gas) suma ~$700M de EBITDA incremental en 2027. A $162 cotiza a ~8x EBITDA 2026E, un descuento notable versus utilities reguladas comparables.',
+    riesgos:'(1) Score 7.60 — el moat energético es real pero más estrecho que los negocios de software o pagos del Core. (2) ERCOT merchant: el precio spot del gas en Texas promedia $30/MWh en 2026 — si se mantiene plano, el upside merchant es limitado. (3) Beta alta (4.5 en escala defensiva): en risk-off, las utilidades no reguladas caen fuerte. (4) Ejecución Cogentrix: la adquisición es reciente y agrega deuda. (5) Regulación nuclear: la licencia de extensión de vida de las plantas nucleares tiene riesgo político y de la NRC. (6) EPS 2027 fue revisado a la baja (-8.4% en 60 días).'
+  },
+  WMS:{
+    pills:'<span class="pill pill-green">Score 8.08</span><span class="pill pill-blue">CAGR +14%</span><span class="pill pill-green">Monopolio nacional</span>',
+    queHace:'Advanced Drainage Systems es el único fabricante de tuberías corrugadas de HDPE (polietileno de alta densidad) con cobertura nacional en EEUU. Produce sistemas de drenaje y manejo de aguas pluviales para construcción residencial, no residencial, agricultura e infraestructura. Su producto reemplaza el hormigón, el acero y el PVC con ventajas de peso, durabilidad y costo de instalación. La compañía tiene 75+ plantas de manufactura y la única red de distribución nacional del sector. ROIC histórico de 27%.',
+    quote:'"Ratings post-1 sep: Oppenheimer Outperform $190→$185 (oct 9). DA Davidson Buy (oct 6). Consensus 10 analistas (oct 2026): 8 Buy / 2 Hold / 0 Sell. Target promedio $187.40 (+48.8%). High $207. El precio cayó de $138 a $125 desde el análisis anterior — el margen de seguridad mejoró del +37.1% al +48.8%."',
+    tesis:'WMS tiene el moat más subestimado de su categoría: es literalmente el único proveedor con red nacional, lo que le da pricing power real sobre constructores que no pueden substituirlo localmente. El ROIC pasó de 13.5% en 2014 a 27%+ hoy — señal de expansión de ventaja competitiva, no de ciclo. Los catalizadores son sólidos y apolíticos: la infraestructura de drenaje es requerida por regulación ambiental (EPA stormwater rules), independiente del ciclo económico. El gasto en infraestructura federal (IIJA) tiene $50B+ en agua y saneamiento, y WMS es el proveedor más posicionado.',
+    riesgos:'(1) Ciclicidad construcción: el 40%+ del revenue viene de construcción residencial y no residencial — una recesión del sector impacta el volumen. (2) Materias primas: el HDPE deriva del gas natural — un ciclo alcista en precios de resina comprime márgenes. (3) Competencia regional: aunque no tienen rival nacional, los jugadores locales pueden ganar proyectos puntuales con precio. (4) EPS miss Q1 2026: la empresa reportó un miss del 13% en EPS. (5) Concentración geográfica: ERCOT y el Sunbelt pesan mucho.'
+  },
+  IREN:{
+    pills:'<span class="pill pill-red">Score 5.50</span><span class="pill pill-yellow">AI Cloud Transition</span><span class="pill pill-blue">Pre-earnings positive</span>',
+    queHace:'IREN (ex Iris Energy) está en transición activa de Bitcoin mining a infraestructura de AI cloud — opera data centers propios con GPUs, CPUs y sistemas de cooling en Australia y Canadá. Revenue TTM $707M con crecimiento +41% YoY. EPS aún negativo (TTM -$2.22) con trayectoria proyectada hacia +$1.14 en 2030. El negocio de AI cloud captura demanda de compute para workloads de inferencia y entrenamiento de modelos.',
+    quote:'"Ratings post-1 sep: B. Riley Buy $91 (sep 29, bajó desde $96). Rothschild & Co Hold $40 (sep 21, iniciación). Northland Securities Buy $99 (sep 18, iniciación). BTIG Buy $80 (sep 14). J.P. Morgan Buy $65 (sep 14, subió desde $46). Consensus 20 analistas: mayoría Buy. Target promedio post-sep ~$75. El mercado descuenta la transición con alta dispersión de targets ($40–$99) — refleja incertidumbre genuina sobre velocidad de ejecución."',
+    tesis:'La tesis es de transición: IREN tiene infraestructura de data center propia (activo difícil de replicar) y está pivotando hacia AI cloud en el momento de mayor demanda secular de compute. Si ejecuta la transición, el negocio madura de commodity mining a servicios de infraestructura con contratos recurrentes. A $30.39 con consensus de $75, el mercado está comprando la opción de ejecución a descuento. El upside asimétrico justifica una posición pequeña táctica.',
+    riesgos:'(1) EPS negativo hasta ~2028-2029 — sin flujo de ganancias reales durante el horizonte inicial de inversión. (2) Moat mínimo: el mercado de GPU cloud es commoditizado — AWS, Azure, CoreWeave tienen escala y marca que IREN no puede igualar. (3) Sin pricing power demostrado — los contratos de compute se negocian en mercado competitivo. (4) Alta deuda de capex para construir infraestructura. (5) Riesgo de ejecución: la transición de mining a AI cloud requiere cambio de cliente base, go-to-market y operaciones — no es garantizada. (6) Score 5.5 — posición táctica, no core.'
+  },
+  AXON:{
+    pills:'<span class="pill pill-yellow">Score 8.70</span><span class="pill pill-green">CAGR +22%</span><span class="pill pill-blue">Monopolio seg. pública</span>',
+    queHace:'Axon Enterprise es el proveedor dominante de tecnología para seguridad pública en EEUU: Tasers, cámaras corporales (Axon Body), vehículos autónomos (Axon Air) y la plataforma de gestión de evidencia digital Evidence.com. Su modelo es un ecosistema cerrado hardware + software + datos: una vez que una agencia policial adopta Evidence.com, no puede migrar — los datos de miles de casos legales quedan atrapados en el sistema. Cotiza $422 vs máximos de ~$650, una corrección del ~35% desde niveles pico de 2026.',
+    quote:'"Ratings post-1 sep: Northland Securities subió $640→$800 (oct 2026). Needham subió $820→$870 (oct 2026). Argus Research mantuvo Buy ~$720 (sep 3). Consensus 21 analistas: 18 Buy / 3 Hold / 0 Sell — ningún bajista activo. Target promedio $710 (post-sep). La dirección confirmó que Q4 2026 será el trimestre de mayor crecimiento del año."',
+    tesis:'Axon tiene el moat más sólido del grupo de nuevos ingresos: switching costs estructurales (datos legales inamovibles), network effects (más agencias = más datos = mejor IA), y barreras regulatorias que eliminan la competencia extranjera en licitaciones federales/estatales. Revenue crece +30% YoY con expansión de márgenes. El mercado internacional apenas está en fase inicial — Europa y Latam representan menos del 15% del revenue hoy. La corrección desde máximos es de valuación, no de negocio.',
+    riesgos:'(1) Valuación exigente incluso post-corrección: P/E forward ~60x — requiere que el crecimiento se sostenga. (2) Riesgo político: controversias sobre uso de fuerza policial o cambios en financiamiento de agencias pueden afectar contratos. (3) Expansión internacional más lenta de lo proyectado — culturas policiales distintas, regulaciones locales. (4) Alta correlación con ciclo tech: Beta &gt;1.5, cae desproporcionadamente en correcciones de mercado.'
+  },
+  FICO:{
+    pills:'<span class="pill pill-yellow">Score 7.25</span><span class="pill pill-yellow">CAGR +18%</span><span class="pill pill-red">Riesgo FHFA</span>',
+    queHace:'Fair Isaac Corporation es el dueño del FICO Score — el estándar histórico para evaluar solvencia crediticia en EEUU. El 28 de septiembre de 2026, la FHFA equiparó VantageScore con FICO en las grillas de pricing de Fannie Mae y Freddie Mac, eliminando la ventaja regulatoria que protegía el negocio hipotecario (~35-40% del profit de Scores). La acción cayó &gt;25% en un solo día y &gt;35% desde máximos. Cotiza $800 (+3.7% vs oct 16) — el mercado modera la sobre-reacción inicial. El segmento Software (plataformas de decisión crediticia B2B) no está afectado y sigue siendo altamente recurrente.',
+    quote:'"Consensus post-1 sep (oct 2026): 10 Buy / 4 Hold / 2 Sell. Target promedio ~$1.050 (+45.6% desde $721). Zacks Strong Sell (oct 7). Huber Research Strong Sell (sep 29). BofA downgrade Buy→Neutral, target $1.400→$700 (sep 30). Barclays Overweight $875 (oct 2). Needham Buy $1.100 (oct 13). Wells Fargo Overweight $950 (sep 30). BMO Capital Outperform $1.150 (sep 30). Goldman Sachs Buy implícito $1.322 (sep 29). Susquehanna $700 (sep 30). El rango de targets ($700–$1.344) refleja desacuerdo genuino sobre cuántos lenders migrarán a VantageScore."',
+    tesis:'El moat de FICO fuera del segmento hipotecario sigue intacto: tarjetas de crédito, auto loans, y el negocio Software B2B tienen switching costs reales. La pregunta es cuánto del segmento hipotecario migra realmente a VantageScore — TransUnion ofrece VantageScore 4.0 a $0.99 hasta 2028, y Rocket Mortgage ya anunció la migración. Si la adopción es gradual (años), el FCF aguanta y el upside a $1.050 es real. Si la migración es masiva en 12-18 meses, el profit de Scores cae estructuralmente y los targets de $700 son el escenario base.',
+    riesgos:'(1) Riesgo FHFA ejecutado — ya no es teórico: Fannie/Freddie ahora aceptan VantageScore en paridad. La velocidad de adopción lender es el único debate. (2) TransUnion ofreciendo VantageScore a $0.99 hasta dic 2028 — diferencial de precio masivo vs FICO. (3) Rocket Mortgage (mayor originador hipotecario) ya migró — si otros grandes siguen, el efecto es no lineal. (4) El negocio Software B2B (~25% del profit) protege parcialmente, pero no compensa si Scores hipotecario colapsa. (5) CAGR estimado de +13% está por debajo del umbral Ideas Lab (&gt;20%) — posición en revisión.'
+  },
+  CPRT:{
+    pills:'<span class="pill pill-yellow">Score 8.20</span><span class="pill pill-yellow">CAGR +6%</span><span class="pill pill-blue">Compoundador silencioso</span>',
+    queHace:'Copart opera la red de subastas en línea de autos totalizados más grande del mundo. Cuando una aseguradora totaliza un vehículo, Copart lo recibe, almacena y subasta a compradores institucionales en 170+ países. Su red logística es irrepetible: más de 200 ubicaciones propias en EEUU, con expansión activa en Europa y Latam. No genera titulares pero compone capital a tasas extraordinarias desde hace décadas con mínima deuda, altísimo FCF y un modelo de negocio prácticamente indestructible.',
+    quote:'"Ratings post-1 sep: BNP Paribas subió $40→$43 (sep 28). JPMorgan upgrade Neutral→Overweight $32→$40 (sep 3). HSBC bajó Buy→Hold $36 (sep 16). Target avg post-sep: $41.50. Consensus 12 analistas: 7 Buy / 3 Hold / 2 Sell. Los 2 Sell son la señal de alerta más notable del grupo — aunque los ratings positivos son más recientes y de mayor convicción que los negativos."',
+    tesis:'La red logística de Copart es su moat principal — tomó 40 años construirla y sería imposible de replicar en menos de 15-20 años. Los network effects son reales: más compradores internacionales atraen más aseguradoras, que traen más inventario, que atraen más compradores. Es parcialmente contracíclico: las recesiones aumentan la tasa de totalización de vehículos. Sin deuda neta significativa, FCF margin ~25%, ROIC histórico sostenido.',
+    riesgos:'(1) Autos eléctricos: más difíciles de totalizar y reparar → cambio estructural en el negocio a 5-10 años vista. (2) Rating más dividido que el resto del grupo (2 Sell activos) — inusual para un compoundador de esta calidad. (3) Crecimiento a menores tasas conforme la base se amplía. (4) Expansión internacional más costosa y lenta de lo proyectado.'
+  },
+  MSCI:{
+    pills:'<span class="pill pill-yellow">Score 8.00</span><span class="pill pill-green">CAGR +24%</span><span class="pill pill-blue">Infraestructura financiera</span>',
+    queHace:'MSCI es el proveedor de índices financieros, analytics y ESG más importante del mundo institucional. Sus índices (MSCI World, MSCI EM, MSCI ACWI) son el benchmark estándar para trillones de dólares en fondos de inversión, ETFs y mandatos institucionales globales. El modelo es puro recurring revenue: cobran fees sobre AUM ligados a sus índices (no puedes simplemente dejar de usar MSCI si tu fondo sigue el índice). Contratos multi-año con renovación automática &gt;95%. Sin concentración relevante de clientes.',
+    quote:'"Ratings post-1 sep: JPMorgan Overweight $700→$685 (oct 14). Morgan Stanley Overweight $700→$662 (oct 13). Wells Fargo Overweight $690→$685 (sep 29). Patrón: los 3 analistas recientes mantienen Buy pero recortan targets levemente — mercado más cauteloso sobre múltiplos, no sobre el negocio. Target avg post-sep: $673. Consensus 18 analistas: 16 Buy / 1 Hold / 1 Sell. ⚠️ Precio subió a $592 (+4% vs oct 16) — margen de seguridad comprimido a +13.7%, por debajo del umbral mínimo del Ideas Lab."',
+    tesis:'MSCI opera infraestructura financiera crítica que no puede ser reemplazada sin disrumpir trillones de dólares en AUM. El switching cost es estructural: cambiar el benchmark de un fondo requiere aprobación regulatoria, notificación a inversores y reconstrucción del track record — un proceso de años. El modelo de fees sobre AUM tiene leverage operativo implícito: cuando los mercados suben, el revenue sube automáticamente sin costo adicional.',
+    riesgos:'(1) Margen de seguridad comprimido (+13.7%) — precio $592 supera el umbral mínimo del Ideas Lab; considerar reducir o monitorear hasta que el precio corrija. (2) ESG bajo presión: el segmento ESG de MSCI enfrenta vientos políticos contrarios en EEUU. (3) Competencia de S&P Global y FTSE Russell en índices. (4) Desaceleración de flows hacia ETFs globales podría comprimir el crecimiento de AUM-linked revenues.'
+  }
+};
+
+// ── CORE DATA ────────────────────────────────────────────
+// Core rank: 50% CAGR + 50% Score (sin T1 binary, sin margen)
+// CAGR satura en 45% (CAGR/30 cap a 1.5). Max = 0.75 + 0.50 = 1.25
+function coreRankScore(c){
+  const cagr = c.cagr || 0;
+  const score = c.score || 0;
+  return 0.50 * Math.min(cagr/30, 1.5) + 0.50 * (score/10);
+}
+const CORE_DATA=[
+  {ticker:'NVDA',nombre:'NVIDIA Corporation',score:8.57,cagr:50,horizonte:4,precio:216.47,target:328.72,
+   eps:27.19,peActual:55,divYield:0.03,
+   dims:[8.5,9.0,9.5,9.0,9.5,9.0,3.0],
+   pills:'<span class="pill pill-green">Score 8.57</span><span class="pill pill-green">CAGR +50%</span><span class="pill pill-blue">AI chips monopolio</span>',
+   queHace:'NVIDIA diseña los aceleradores de IA más demandados del mercado (H100, H200, B100). Su plataforma CUDA es el estándar de la industria de IA, con un ecosystem lock-in de 15+ años. Más del 70% del mercado de GPUs para centros de datos. La demanda de sus chips supera la oferta hasta 2026-2027. Márgenes operativos &gt;50% en Data Center.',
+   quote:'"Consensus 65 analistas: 58 Buy. Target promedio $329 post-sep. BMO $185 (oct 14). Evercore $200 (oct 10). La guía Q3 superó estimados por amplio margen — blackwell ramp acelerándose."',
+   tesis:'NVIDIA no es solo un fabricante de chips — es el sistema operativo de la revolución de IA. CUDA tiene 15 años de ventaja y el switching cost para los hyperscalers es prohibitivo. El ciclo de Blackwell (2025-2027) tiene demanda estructural sin precedente histórico en semiconductores. A $214 cotiza a ~25x EPS FY2027E — razonable considerando la tasa de crecimiento.',
+   riesgos:'(1) Beta Defensivo 3.0 — la más volátil del Core. (2) AMD y custom silicon de hyperscalers (TPU, Trainium) podrían erosionar participación de mercado en 3-5 años. (3) Control de exportaciones a China reduce TAM. (4) Ciclo de capex de hyperscalers puede desacelerarse si el ROI de IA es cuestionado.',
+   entry:'$180–200'},
+  {ticker:'AVGO',nombre:'Broadcom Inc.',score:8.27,cagr:35,horizonte:4,precio:334.37,target:527.59,
+   eps:30.31,peActual:35,divYield:1.3,
+   dims:[8.5,8.5,8.0,8.5,8.5,8.5,6.5],
+   pills:'<span class="pill pill-green">Score 8.27</span><span class="pill pill-green">CAGR +35%</span><span class="pill pill-blue">AI + Enterprise Software</span>',
+   queHace:'Broadcom opera en dos mundos: semiconductores de conectividad para networking de IA (XPUs custom para Meta/Alphabet) y software empresarial de misión crítica (VMware, CA Technologies, Symantec). El negocio de VMware —integrado en 2024— agregó $20B+ de revenue recurrente con márgenes de &gt;70%. Hak Tan es uno de los mejores allocators de capital del sector tech.',
+   quote:'"Consensus (oct 2026): 38 Buy / 4 Hold. Target promedio $528. Raymond James $240 (oct 1). Morgan Stanley $225 (sep 30). El segmento AI Semiconductors creció +220% YoY en FY2024 — el ramp de XPU custom con Meta y Alphabet es el principal driver de CAGR."',
+   tesis:'AVGO tiene la combinación más rara del mercado: semiconductores de altísima especialización + software empresarial inamovible. VMware tiene switching costs absolutos — mover una infraestructura de VMware en un banco o una aseguradora es un proyecto de años y decenas de millones de dólares. El XPU custom de IA es la apuesta más sólida fuera de NVIDIA para capturar el gasto de AI capex de los hyperscalers. A $329 el margen de seguridad se amplía a +60.6% vs consenso $528.',
+   riesgos:'(1) Integración VMware genera complejidad operativa. (2) Alta deuda post-VMware (~$70B). (3) Concentración: Meta y Alphabet representan ~25% del revenue de semiconductores.',
+   entry:'$310–330'},
+  {ticker:'META',nombre:'Meta Platforms Inc.',score:8.48,cagr:12,horizonte:4,precio:694.25,target:814.51,
+   eps:44.67,peActual:26,divYield:0.0,
+   dims:[9.0,8.5,8.5,9.0,8.0,9.0,6.5],
+   pills:'<span class="pill pill-green">Score 8.48</span><span class="pill pill-yellow">CAGR +12%</span><span class="pill pill-blue">AI ad efficiency</span>',
+   queHace:'Meta opera las redes sociales más grandes del mundo: Facebook (3B+ DAU), Instagram, WhatsApp y Messenger. Su negocio es publicidad digital basada en targeting de datos comportamentales — el mejor engine de conversión del mercado. La inversión masiva en IA (Llama, Advantage+) está mejorando la eficiencia publicitaria y abriendo nuevas superficies de monetización. Reality Labs (Quest) es una apuesta de largo plazo aún no rentable.',
+   quote:'"Consensus 68 analistas: 58 Buy. Target promedio $815 (+17.3%). JPMorgan $680 (oct 14). Oppenheimer $700 (oct 1). La guía Q3 fue sólida — Advantage+ AI sigue ganando share en presupuestos de performance marketing de e-commerce. A $694 el margen de seguridad es del +17.3% — todavía por debajo del umbral Tier 1 ≥20%."',
+   tesis:'META tiene el targeting publicitario más eficiente del mundo, una base de 3B+ usuarios imposible de replicar, y un negocio que genera &gt;$40B de FCF anual. La IA no es un gasto de capex para META — es un multiplicador de revenue: cada punto de mejora en Advantage+ se traduce directamente en mayor precio por impresión. Reality Labs es optionality a bajo costo. Nota oct-2026: precio $694 — margen de seguridad +17.3%, sigue en Tier 2 pero acercándose al umbral de 20%.',
+   riesgos:'(1) Margen de seguridad +17.3% — todavía por debajo del umbral ≥20% para Tier 1. (2) Saturación de adultos en EEUU/Europa — crecimiento viene de mercados emergentes con menor ARPU. (3) Regulación europea (DMA, privacidad) reduce el targeting. (4) Capex masivo en IA y Reality Labs puede comprimir FCF margin.',
+   entry:'$580–620'},
+  {ticker:'ASML',nombre:'ASML Holding N.V.',score:8.80,cagr:6,horizonte:4,precio:1630.84,target:2152,
+   eps:67.60,peActual:32,divYield:0.8,
+   dims:[9.5,9.0,8.5,8.5,8.5,9.5,7.0],
+   pills:'<span class="pill pill-green">Score 8.80</span><span class="pill pill-yellow">CAGR +6%</span><span class="pill pill-blue">EUV monopolio</span>',
+   queHace:'ASML es el único fabricante de máquinas EUV (Extreme Ultraviolet) del mundo — las máquinas que permiten fabricar los chips de menor nodo (2nm, 3nm) en TSMC, Samsung e Intel. Sin ASML, no existe ninguna ruta tecnológica alternativa para producir semiconductores avanzados. Sus máquinas EUV cuestan €200M+ cada una y tienen un lead time de 2 años. Después de venderlas, genera ingresos de servicio de largo plazo (40%+ del revenue).',
+   quote:'"Consensus 35 analistas: 28 Buy. Target promedio $2,152 USD. Los backlog de EUV están llenos hasta 2027. La máquina NA High-NA (High-NA EUV, €400M/unidad) es el nuevo catalizador de margen."',
+   tesis:'ASML tiene el moat más difícil de destruir del mundo de semiconductores: tomó 20+ años y más de €20B de I+D para desarrollar el EUV. Ningún competidor puede construir una alternativa creíble en menos de 10-15 años. Es literalmente el cuello de botella de la revolución de IA — sin sus máquinas, no hay chips avanzados. A $1,642 cotiza con margen de seguridad del +31.1% vs consenso $2,152.',
+   riesgos:'(1) Exposición a China (15-20% del revenue) — control de exportaciones puede reducir TAM. (2) Alta dependencia de TSMC (~50% de ventas de EUV). (3) Ciclicidad del capex de semiconductores — los backlog se pueden reducir en recesiones. (4) Precio €/USD crea volatilidad en USD.',
+   entry:'$1,400–1,550'},
+  {ticker:'ISRG',nombre:'Intuitive Surgical Inc.',score:8.74,cagr:18,horizonte:4,precio:438.00,target:478.53,
+   eps:11.33,peActual:38,divYield:0.0,
+   dims:[9.0,9.0,8.5,9.5,9.0,9.0,6.5],
+   pills:'<span class="pill pill-green">Score 8.74</span><span class="pill pill-yellow">CAGR +18%</span><span class="pill pill-red">Margen 9.3% — Tier 2</span><span class="pill pill-green">Da Vinci monopolio</span>',
+   queHace:'Intuitive Surgical fabrica el sistema robótico quirúrgico Da Vinci, el estándar de facto para cirugía mínimamente invasiva. Con más de 9,500 sistemas instalados en hospitales globales, genera el 70%+ de su revenue de consumibles e instrumentos por procedimiento (un modelo razor/razorblade perfecto). Los cirujanos que aprenden Da Vinci no quieren aprender otro sistema — su curva de aprendizaje crea un moat comportamental único en medicina.',
+   quote:'"Consenso 34 analistas (post-sep 2026): 28 Buy / 5 Hold / 1 Sell. Target promedio $479. Piper Sandler $525 (oct 2026). Precio oct 20: $438.00 (+2.6% vs oct 16). ⚠️ Q3 earnings reportado el 20-oct-2026 — precio after-hours -7% (~$407). Beat en EPS ($3.00 vs est. $2.64) y revenue ($3.05B vs est. $2.91B), pero procedimientos EE.UU. desaceleraron a +12% (vs +14% Q1), atribuido a postergación de cirugías por cambios en subsidios ACA. Adj. operating margin 26.4% vs 38.9% YoY — compresión significativa. Score revisado a 8.74. Revenue TTM $11.03B (+20.7% YoY). EPS TTM $8.72 (+21.6% YoY). Da Vinci 5 en ramp con adopción superior a generaciones anteriores."',
+   tesis:'ISRG tiene el moat más defensivo del Core: el switching cost no es tecnológico sino biológico — los cirujanos pasan 200-300 horas aprendiendo Da Vinci y no van a reentrenarse. El modelo es perfecto: hardware a precio de costo + consumibles de $2,000-4,000 por procedimiento con margen de 70%+. El aumento de procedimientos quirúrgicos globales es tendencia secular independiente del ciclo económico. Nota oct-2026: margen de seguridad del +12.3% vs consenso $479 — Tier 2.',
+   riesgos:'(1) Margen de seguridad comprimido (+9.3%) — precio $438 sube post-reacción, AH el 20-oct a $408 sugiere volatilidad por earnings. Esperar confirmación de targets post-resultados. (2) Competencia de Medtronic Hugo, Johnson &amp; Johnson Ottava en ramp. (3) Regulación FDA más estricta en nuevas indicaciones. (4) Concentración en EE.UU. (~65% del revenue). (5) Expansión internacional más lenta en sistemas de salud públicos (UE, Japón).',
+   entry:'$340–360'},
+  {ticker:'GOOGL',nombre:'Alphabet Inc.',score:8.95,cagr:19,horizonte:4,precio:340.28,target:430.51,
+   eps:20.54,peActual:22,divYield:0.0,
+   dims:[9.5,9.0,8.5,9.5,8.5,9.5,7.5],
+   pills:'<span class="pill pill-green">Score 8.95</span><span class="pill pill-yellow">CAGR +19%</span><span class="pill pill-blue">Search + Cloud AI</span>',
+   queHace:'Alphabet es la empresa de mayor capitalización con el moat más amplio de este portafolio: Google Search (92% share de búsqueda global), YouTube (2B+ usuarios/mes), Google Cloud (tercer mayor IaaS, creciendo 28% YoY) y DeepMind (investigación de IA de frontera). El negocio de Search es el mayor engine de publicidad contextual de la historia. Gemini Ultra está siendo integrado en toda la suite de productos.',
+   quote:'"Consensus 60+ analistas: mayoría Buy. Target promedio $431. Bernstein $500 (oct 2026). Google Cloud superó $10B de revenue trimestral en Q2 2026 — es la primera vez en su historia. Las inversiones en AI Overviews (Search) todavía no están generando overhang de revenue."',
+   tesis:'GOOGL cotiza al múltiplo más bajo entre las Mag7 (~17x PE forward) a pesar de tener el moat más diversificado. La tesis es simple: el mercado está sobreestimando el riesgo de disruption de Search por LLMs. En realidad, Gemini integrado en Search está mejorando el engagement y el revenue per query. Google Cloud tiene momentum real. A $341 el margen de seguridad es +26.6% vs consenso $431.',
+   riesgos:'(1) DOJ antitrust — riesgo de remedies que podrían forzar la venta de Chrome o Android. (2) AI Overviews reduce clicks a sitios de terceros — comprime potencialmente el RPM. (3) Competencia de OpenAI/Microsoft Copilot en enterprise AI. (4) YouTube monetización estancada vs TikTok.',
+   entry:'$290–310'},
+  {ticker:'CEG',nombre:'Constellation Energy Corp.',score:8.30,cagr:20,horizonte:4,precio:258.84,target:337.57,
+   eps:16.00,peActual:25,divYield:0.7,
+   dims:[8.5,8.0,7.5,7.5,9.0,8.5,7.5],
+   pills:'<span class="pill pill-green">Score 8.30</span><span class="pill pill-yellow">CAGR +20%</span><span class="pill pill-purple">Nuclear 24/7 AI</span>',
+   queHace:'Constellation Energy es el mayor operador de plantas nucleares en EEUU (~10% de la generación nuclear del país). Firmó contratos PPA de largo plazo con Microsoft (Three Mile Island — reactiva para Copilot data centers) y está en negociaciones avanzadas con otros hyperscalers. Es la forma más pura de invertir en la demanda de energía de IA de "base load" — energía nuclear 24/7, sin intermitencia, a precios acordados por 20 años.',
+   quote:'"Consensus 18 analistas: 15 Buy. Target promedio $338. Guggenheim $380 (oct 2026). El acuerdo con Microsoft para la reactivación de Three Mile Island fue el catalizador más importante del sector energía de este año. Los talks con Amazon y Meta para contratos similares están en fase avanzada."',
+   tesis:'CEG tiene el activo más escaso del mercado energético de IA: plantas nucleares ya construidas, con licencias vigentes o renovables, en un entorno donde construir una nueva planta tarda 15-20 años. Los PPAs de 20 años con hyperscalers eliminan el riesgo merchant y crean un modelo de FCF predecible similar a un REIT de infraestructura. A $259 cotiza con margen de seguridad del +30.4% vs consenso $338 — la caída desde $271 mejoró la oportunidad de entrada.',
+   riesgos:'(1) Regulación nuclear: extensión de licencias requiere aprobación de la NRC. (2) Dependencia de 1-2 contratos PPA mega — si Microsoft o Amazon renegocian, el impacto es grande. (3) Capex de mantenimiento de plantas nucleares es impredecible. (4) Precio de mercado eléctrico afecta revenue de plants sin PPA.',
+   entry:'$230–250'},
+  {ticker:'AMZN',nombre:'Amazon.com Inc.',score:8.29,cagr:8,horizonte:4,precio:262.63,target:331.46,
+   eps:13.00,peActual:27,divYield:0.0,
+   dims:[9.5,8.5,8.0,8.5,9.0,9.0,5.5],
+   pills:'<span class="pill pill-green">Score 8.29</span><span class="pill pill-yellow">CAGR +8%</span><span class="pill pill-blue">AWS + Retail dominance</span>',
+   queHace:'Amazon opera el mayor ecosistema de comercio y cloud del mundo: AWS (cloud #1, 33% market share, $100B+ revenue anual), Amazon Retail + Prime (la mayor red logística privada de EEUU), y un negocio de publicidad digital que creció a $60B+ con márgenes de &gt;25%. AWS es el segmento de mayor margen (&gt;30% operativo) y el que financia todo el ecosistema. La integración de IA (Bedrock, Trainium, Alexa+) posiciona a AWS como la plataforma cloud de IA más completa del mercado.',
+   quote:'"Consensus 60+ analistas: 55 Buy. Target promedio $331. Wells Fargo $330 (oct 2026). Wolfe Research $340 (oct 2026). AWS aceleró crecimiento a 22% YoY en Q2 2026 — el mejor trimestre en 18 meses. El margen operativo de retail norteamericano superó 7% por primera vez en la historia."',
+   tesis:'AMZN es el único negocio del Core con tres fuentes de moat independientes: (1) AWS — switching costs absolutos en cloud enterprise, economías de escala insuperables, y el portfolio de IA más completo; (2) Prime — red logística y ecosystem lock-in con 200M+ miembros; (3) Advertising — el tercer mayor negocio de ads digitales, con inventario de intención de compra que ni Google ni Meta tienen. A $263 cotiza a ~27x PE forward con margen de seguridad del +26.2% vs consenso $331.',
+   riesgos:'(1) CAGR +8% — retorno esperado moderado en el precio actual. (2) Regulación antimonopolio: FTC ha intentado frenar adquisiciones y puede presionar la estructura del negocio. (3) Competencia de Microsoft Azure y Google Cloud en el segmento enterprise AI. (4) Retail tiene márgenes bajos — cualquier shock de consumo comprime FCF. (5) Capex masivo en infraestructura de IA ($75B+ en 2026) puede diferir la mejora de FCF.',
+   entry:'$215–235'},
+  // Tier 2
+  {ticker:'MSFT',nombre:'Microsoft Corporation',score:9.10,cagr:11,horizonte:4,precio:531.87,target:599.24,
+   eps:25.92,peActual:35,divYield:0.7,
+   dims:[9.5,9.5,9.0,9.0,8.5,9.5,8.0],
+   pills:'<span class="pill pill-green">Score 9.10</span><span class="pill pill-yellow">CAGR +11%</span><span class="pill pill-yellow">Precio exigente</span>',
+   queHace:'Microsoft opera la plataforma empresarial más amplia del mundo: Azure (cloud #2 con 25% share), Office 365 (1.5B usuarios), Dynamics, Teams y GitHub. La integración de OpenAI en todos sus productos (Copilot) es el mayor catalizador de ARPU desde la nube. El negocio es casi puro recurring revenue: rentas anuales de licencias, contratos cloud multi-año y GitHub seats.',
+   quote:'"Consensus 60+ analistas: mayoría Buy. Target promedio $599. Goldman $550 (oct 2026). Azure creciendo 29% YoY en Q1 FY2027 — en línea con estimados. Copilot adoption todavía en early innings — penetración de seats inferior al 10%."',
+   tesis:'MSFT tiene el score más alto del portafolio (9.10) y el moat más diversificado: enterprise lock-in en Office/Teams, Azure con momentum, y el mejor posicionamiento en AI enterprise a través de Copilot. La posición está en Tier 2 únicamente por el margen de seguridad (+12.7% vs target de $599) — el precio actual descuenta demasiada perfección. El precio de entrada razonable es $478–$495.',
+   riesgos:'(1) Margen de seguridad +12.7% — por debajo del umbral ≥20% para Tier 1. (2) Inversión en OpenAI podría no monetizarse al ritmo esperado. (3) Competencia de AWS y GCP en cloud enterprise. (4) Regulación antimonopolio en activación de Activision/gaming.',
+   entry:'$478–495'},
+  {ticker:'V',nombre:'Visa Inc.',score:9.05,cagr:6,horizonte:4,precio:406.57,target:422.77,
+   eps:19.32,peActual:32,divYield:0.7,
+   dims:[9.5,9.0,9.0,9.5,7.5,9.5,8.0],
+   pills:'<span class="pill pill-green">Score 9.05</span><span class="pill pill-yellow">CAGR +6%</span><span class="pill pill-yellow">Precio exigente</span>',
+   queHace:'Visa opera la red de pagos más grande del mundo: 4.5B tarjetas, 80M+ comercios en 200 países, procesando más de $14T anuales. No asume riesgo crediticio (no es un banco) — cobra una pequeña tarifa por cada transacción procesada. Es la empresa con el modelo de negocio más eficiente del Core: márgenes de &gt;50%, ROIC de &gt;40%, capex casi nulo.',
+   quote:'"Consensus 45 analistas: 38 Buy. Target promedio $423. Mizuho $450 (oct 2026). El volumen de pagos cross-border creció 14% YoY en Q3 FY2026 — el mejor trimestre en 2 años. La penetración de efectivo a digital en mercados emergentes es el driver de largo plazo."',
+   tesis:'Visa es el negocio más cercano a la perfección del Core: network effects de dos lados (más comercios atraen más usuarios, más usuarios atraen más comercios), switching costs absolutos (ningún banco quiere reconstruir la infraestructura de aceptación global), y un modelo que se beneficia de la inflación (más gasto nominal = más revenue). Está en Tier 2 por el margen de seguridad (+4.0%) — posición bien posicionada para añadir en correcciones significativas.',
+   riesgos:'(1) Margen de seguridad +4.0% — muy por debajo del umbral ≥20% para posición Core activa. (2) Competencia de stablecoins y CBDC podría reducir el TAM de tarjetas a largo plazo. (3) Regulación de interchange fees (Durbin Amendment y posibles extensiones). (4) Desaceleración de consumo en recesión reduce volumen.',
+   entry:'$305–315'}
+];
+
+function renderCore(){
+  const list=document.getElementById('core-cards-list');
+  if(!list)return;
+  list.innerHTML='';
+  const sorted=CORE_DATA.slice().sort((a,b)=>coreRankScore(b)-coreRankScore(a));
+  // header note
+  const hdr=document.createElement('div');
+  hdr.style.cssText='margin-bottom:1rem;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap';
+  hdr.innerHTML=`<span style="font-size:.85rem;font-weight:700;color:var(--white)">⭐ Ranking Core</span><span style="font-size:.72rem;color:var(--green);font-weight:600">${sorted.length} empresas</span><span style="font-size:.68rem;color:var(--muted);margin-left:auto">Ordenado por: CAGR 50% · Score 50%</span>`;
+  list.appendChild(hdr);
+  sorted.forEach((co,idx)=>{
+    const margen=((co.target-co.precio)/co.precio)*100;
+    const medal=idx===0?'🥇':idx===1?'🥈':idx===2?'🥉':'⭐';
+    const badgeText=`${medal} #${idx+1}`;
+    const badgeClass='badge-rank-'+(idx<3?idx+1:'n');
+    const scColor=co.score>=8.5?'var(--green)':co.score>=7.0?'var(--yellow)':'var(--red)';
+    const margenStr=fmtPct(margen);
+    const margenClass=margen>=20?'green':margen>=12?'yellow':'red';
+    const cagrClass=co.cagr>=13?'green':'yellow';
+    const proj=10000*Math.pow(1+co.cagr/100,co.horizonte);
+    const yr=new Date().getFullYear();
+    const dimsAttr=JSON.stringify(co.dims);
+    const labelsAttr=JSON.stringify(['Wide Moat','Pricing Power','ROIC','Balance','Crecimiento','Ventajas','Beta Def.']);
+    const entryHTML=co.entry?`<div class="note-box" style="margin-bottom:.75rem"><p>📍 Precio de entrada razonable: <strong>${esc(co.entry)}</strong></p></div>`:'';
+    const div=document.createElement('div');
+    div.className='empresa-card';
+    div.innerHTML=`
+      <div class="empresa-rank-badge ${badgeClass}">${badgeText}</div>
+      <div class="empresa-header">
+        <div>
+          <div class="empresa-ticker">${esc(co.ticker)}</div>
+          <div class="empresa-nombre">${esc(co.nombre)}</div>
+          <div class="pills" style="margin-top:.5rem">${co.pills}<span class="pill pill-muted">P/E ${co.peActual}x</span></div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:2rem;font-weight:900;color:${scColor}">${co.score.toFixed(2)}</div>
+          <div class="empresa-score-label">Score / 10</div>
+        </div>
+      </div>
+      <p style="color:var(--fg);font-size:.9rem"><strong>¿Qué hace?</strong> ${co.queHace}</p>
+      <div class="score-bars" data-scores='${dimsAttr}' data-labels='${labelsAttr}'></div>
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-val">${fmtUSD(co.precio)}</div><div class="stat-lbl">Precio · oct 20</div></div>
+        <div class="stat-box"><div class="stat-val ${margenClass}">${margenStr}</div><div class="stat-lbl">Margen seguridad</div></div>
+        <div class="stat-box"><div class="stat-val ${cagrClass}">${fmtPct(co.cagr)}</div><div class="stat-lbl">CAGR base</div></div>
+        <div class="stat-box"><div class="stat-val">${fmtUSD(proj)}</div><div class="stat-lbl">$10K a ${co.horizonte}a</div></div>
+      </div>
+      <div class="quote"><p>${co.quote}</p></div>
+      ${entryHTML}
+      <p style="font-size:.85rem;color:var(--fg);margin-bottom:.5rem"><strong>Tesis:</strong> ${co.tesis}</p>
+      <p style="font-size:.85rem;color:var(--fg);margin-bottom:0"><strong>Riesgos:</strong> ${co.riesgos}</p>`;
+    list.appendChild(div);
+  });
+  observeCards(list);
+}
+
+// ══════════════════════════════════════════
+// FINNHUB AUTO-PRICE UPDATE
+// ══════════════════════════════════════════
+(function(){
+  // All tickers across Core + Ideas Lab
+  const ALL_TICKERS = [
+    'NVDA','AVGO','GOOGL','CEG','ISRG','MSFT','AMZN','META','ASML','V',
+    'APP','FTAI','MU','VST','WMS','IREN','AXON','FICO','CPRT','MSCI'
+  ];
+
+  // Badge shown while updating
+  function showPriceBadge(msg, color){
+    let badge = document.getElementById('fh-badge');
+    if(!badge){
+      badge = document.createElement('div');
+      badge.id = 'fh-badge';
+      badge.style.cssText = 'position:fixed;bottom:16px;right:16px;z-index:9999;'+
+        'font-size:.72rem;font-weight:700;padding:.35rem .8rem;border-radius:20px;'+
+        'font-family:inherit;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:opacity .4s';
+      document.body.appendChild(badge);
+    }
+    badge.textContent = msg;
+    badge.style.background = color === 'green' ? 'var(--green-dim)' : color === 'red' ? '#B8302018' : 'var(--surface)';
+    badge.style.color = color === 'green' ? 'var(--green)' : color === 'red' ? 'var(--red)' : 'var(--muted)';
+    badge.style.border = '1px solid ' + (color === 'green' ? 'var(--green)' : color === 'red' ? 'var(--red)' : 'var(--border)');
+    badge.style.opacity = '1';
+    if(color !== 'loading'){
+      setTimeout(()=>{ badge.style.opacity='0'; setTimeout(()=>{ try{badge.remove();}catch(e){} },500); }, 4000);
+    }
+  }
+
+  // Fetch via Google Apps Script proxy (sin CORS)
+  const PROXY = 'https://script.google.com/macros/s/AKfycbxbsbacAKNuqzNbT7sjyw6W7byyz50x0qtSypavroyhzCOGKq-zq4AEXPxUc2DR-IW_/exec';
+  async function fetchQuote(ticker){
+    const url = `${PROXY}?ticker=${ticker}`;
+    const res = await fetch(url, {signal: AbortSignal.timeout(10000), mode: 'cors'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const data = await res.json();
+    const price = data?.chart?.result?.[0]?.meta?.regularMarketPrice;
+    if(!price || price === 0) throw new Error('no price');
+    return price;
+  }
+
+  // Update a price in CORE_DATA array
+  function updateCorePrice(ticker, price){
+    const co = CORE_DATA.find(c => c.ticker === ticker);
+    if(co) co.precio = price;
+  }
+
+  // Update a price in IDEAS seeds (localStorage)
+  function updateIdeaPrice(ticker, price){
+    try{
+      const raw = localStorage.getItem('ideas-lab-data');
+      if(!raw) return;
+      const arr = JSON.parse(raw);
+      const idea = arr.find(i => i.ticker === ticker);
+      if(idea){ idea.precio = price; localStorage.setItem('ideas-lab-data', JSON.stringify(arr)); }
+    }catch(e){}
+  }
+
+  // Main: fetch all prices in parallel, then re-render
+  async function fetchAllPrices(){
+    showPriceBadge('⟳ Actualizando precios…', 'loading');
+    try{
+      const results = await Promise.allSettled(
+        ALL_TICKERS.map(t => fetchQuote(t).then(p => ({ticker:t, price:p})))
+      );
+      let updated = 0;
+      results.forEach(r => {
+        if(r.status === 'fulfilled'){
+          const {ticker, price} = r.value;
+          updateCorePrice(ticker, price);
+          updateIdeaPrice(ticker, price);
+          updated++;
+        }
+      });
+      if(updated > 0){
+        renderCore();
+        renderIdeas();
+        showPriceBadge(`✓ ${updated} precios actualizados`, 'green');
+      } else {
+        // Mostrar el primer error real para diagnosticar
+        const firstFail = results.find(r => r.status === 'rejected');
+        const errMsg = firstFail ? firstFail.reason.message : 'precio=0';
+        showPriceBadge('⚠ Error: '+errMsg, 'red');
+      }
+    } catch(e){
+      showPriceBadge('⚠ Error: '+e.message, 'red');
+    }
+  }
+
+  // Run after initial render
+  window._finnhubFetch = fetchAllPrices;
+})();
+
+// ── INIT ──────────────────────────────────────────────────
+setupReveal();
+seedDefaultIdeas();
+renderIdeas();
+renderCore();
+
+// Fetch live prices after first render (non-blocking)
+setTimeout(function(){ if(window._finnhubFetch) window._finnhubFetch(); }, 800);
+
+// ══════════════════════════════════════════
+// SIMULADOR CAGR — JavaScript
+// ══════════════════════════════════════════
+(function(){
+function simEnsureChart(cb){
+  if(typeof Chart!=='undefined'){ setTimeout(cb,50); return; }
+  var s=document.createElement('script');
+  s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+  s.onload=function(){ setTimeout(cb,50); };
+  document.head.appendChild(s);
+}
+window.simEnsureChart=simEnsureChart;
+const simState = [
+  { name:'Empresa A', precio:100, eps:5, grow:10, hz:3, div:0, score:7.5, consensus:130 },
+  { name:'Empresa B', precio:175, eps:5, grow:20, hz:3, div:0.5, score:8.5, consensus:240 }
+];
+let simActiveCo = 0;
+let simChart = null;
+
+function simGetPE(co){ return co.precio / co.eps; }
+
+function simExitPE(pe){
+  if(pe<10) return 12.5; if(pe<15) return 14; if(pe<20) return 17.5;
+  if(pe<30) return Math.min(pe,25); if(pe<40) return 30; if(pe<50) return 35;
+  return 40;
+}
+
+function simCalc(co){
+  const N=co.hz, pe=simGetPE(co), epsN=co.eps*Math.pow(1+co.grow/100,N);
+  const peExit=simExitPE(pe), target=epsN*peExit;
+  const cagr=(Math.pow(target/co.precio,1/N)-1+co.div/100)*100;
+  return {cagr,epsN,peActual:pe,peExit,targetPrice:target};
+}
+
+function simRank(co){ const {cagr}=simCalc(co); return 0.60*Math.min(cagr/50,1.5)+0.40*(co.score/10); }
+
+function simFmtD(n){ return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:0,maximumFractionDigits:0}).format(n); }
+function simFmtPct(n){ return (n>=0?'+':'')+n.toFixed(1)+'%'; }
+function simFmtX(n){ return n.toFixed(1)+'x'; }
+function simCagrColor(c){ return c>=25?'var(--green)':c>=12?'var(--yellow)':'var(--red)'; }
+function simPillCls(c){ return c>=25?'background:rgba(31,110,79,.12);color:var(--green)':c>=12?'background:rgba(138,94,16,.12);color:var(--yellow)':'background:rgba(176,48,32,.12);color:var(--red)'; }
+
+window.simSelectCo = function(idx){
+  simActiveCo=idx;
+  document.querySelectorAll('.sim-co-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
+  simLoadSliders();
+};
+
+window.simUpdateName = function(val){ simState[simActiveCo].name=val; simRender(); };
+
+window.simSync = function(key,val){
+  const v=parseFloat(val); simState[simActiveCo][key]=v;
+  if(key==='precio'&&v>simState[simActiveCo].consensus){
+    simState[simActiveCo].consensus=v;
+    document.getElementById('ss-consensus').value=v;
+    document.getElementById('sv-consensus').textContent='$'+v.toFixed(0);
+  }
+  const lbl={precio:()=>'$'+v.toFixed(0),eps:()=>'$'+v.toFixed(2),grow:()=>v.toFixed(0)+'%',hz:()=>v.toFixed(0)+' años',div:()=>v.toFixed(1)+'%',score:()=>v.toFixed(1),consensus:()=>'$'+v.toFixed(0)};
+  if(lbl[key]) document.getElementById('sv-'+key).textContent=lbl[key]();
+  if(key==='score') document.getElementById('sim-score-fill').style.width=(v/10*100)+'%';
+  simUpdatePE(); simRender();
+};
+
+function simUpdatePE(){
+  const co=simState[simActiveCo], pe=simGetPE(co);
+  document.getElementById('sv-pe').textContent=pe.toFixed(1)+'x';
+  document.getElementById('sv-pe-exit').textContent=simExitPE(pe).toFixed(1)+'x';
+}
+
+function simLoadSliders(){
+  const co=simState[simActiveCo];
+  ['precio','eps','grow','hz','div','score','consensus'].forEach(k=>{
+    const el=document.getElementById('ss-'+k); if(el) el.value=co[k];
+  });
+  document.getElementById('sim-co-name').value=co.name;
+  document.getElementById('sv-precio').textContent='$'+co.precio.toFixed(0);
+  document.getElementById('sv-eps').textContent='$'+co.eps.toFixed(2);
+  document.getElementById('sv-grow').textContent=co.grow.toFixed(0)+'%';
+  document.getElementById('sv-hz').textContent=co.hz.toFixed(0)+' años';
+  document.getElementById('sv-div').textContent=co.div.toFixed(1)+'%';
+  document.getElementById('sv-score').textContent=co.score.toFixed(1);
+  document.getElementById('sv-consensus').textContent='$'+co.consensus.toFixed(0);
+  document.getElementById('sim-score-fill').style.width=(co.score/10*100)+'%';
+  simUpdatePE();
+}
+
+function simRenderCards(){
+  const el=document.getElementById('sim-result-cards');
+  if(!el) return;
+  const colors=['var(--yellow)','var(--blue)'];
+  el.innerHTML=simState.map((co,i)=>{
+    const {cagr,epsN,peActual,peExit,targetPrice}=simCalc(co);
+    const finalVal=10000*Math.pow(1+cagr/100,co.hz);
+    const margen=((targetPrice-co.precio)/co.precio)*100;
+    const dsc=(co.consensus-co.precio)/co.consensus*100;
+    return `<div class="sim-result-card" style="--card-accent:${colors[i]}">
+      <div class="sim-card-label">Empresa ${i===0?'A':'B'}</div>
+      <div class="sim-card-name">${co.name}</div>
+      <div class="sim-card-cagr" style="color:${simCagrColor(cagr)}">${simFmtPct(cagr)}</div>
+      <div class="sim-card-sub">CAGR anual · ${co.hz} años</div>
+      <div class="sim-card-stats">
+        <div class="sim-stat-ln"><span class="lbl">EPS ${co.hz}a (${co.grow}% g)</span><span class="val">${simFmtD(epsN)}</span></div>
+        <div class="sim-stat-ln"><span class="lbl">P/E actual → salida</span><span class="val">${simFmtX(peActual)} → ${simFmtX(peExit)}</span></div>
+        <div class="sim-stat-ln"><span class="lbl">Precio → target</span><span class="val">${simFmtD(co.precio)} → ${simFmtD(targetPrice)}</span></div>
+        <div class="sim-stat-ln"><span class="lbl">Consenso analistas</span><span class="val">${simFmtD(co.consensus)}</span></div>
+        <div class="sim-stat-ln"><span class="lbl">Descuento al consenso</span><span class="val" style="color:${co.precio<=co.consensus?'var(--green)':'var(--red)'}">${simFmtPct(dsc)}</span></div>
+        <div class="sim-stat-ln"><span class="lbl">Upside implícito</span><span class="val">${simFmtPct(margen)}</span></div>
+        <div class="sim-stat-ln"><span class="lbl">$10K a ${co.hz}a</span><span class="val" style="color:var(--green)">${simFmtD(finalVal)}</span></div>
+        <div class="sim-stat-ln"><span class="lbl">Score</span><span class="val">${co.score.toFixed(1)}/10</span></div>
+      </div>
+      <div><span class="sim-pill" style="${simPillCls(cagr)}">CAGR ${simFmtPct(cagr)}</span>
+      <span class="sim-pill" style="background:var(--surface2);color:var(--muted)">Rank ${simRank(co).toFixed(3)}</span></div>
+    </div>`;
+  }).join('');
+}
+
+function simRenderTable(){
+  const el=document.getElementById('sim-proj-table'); if(!el) return;
+  const maxHz=Math.max(simState[0].hz,simState[1].hz,5);
+  const thStyle='text-align:left;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:8px 10px;border-bottom:1px solid var(--border);white-space:nowrap';
+  const tdStyle='padding:8px 10px;border-bottom:1px solid var(--border);white-space:nowrap;font-family:monospace;font-size:.75rem';
+  let h=`<thead><tr>
+    <th style="${thStyle}">Año</th>
+    <th style="${thStyle}">EPS A</th><th style="${thStyle}">Precio A</th><th style="${thStyle}">P/E A</th><th style="${thStyle}">$10K A</th>
+    <th style="${thStyle};border-left:1px solid var(--border)">EPS B</th><th style="${thStyle}">Precio B</th><th style="${thStyle}">P/E B</th><th style="${thStyle}">$10K B</th>
+  </tr></thead><tbody>`;
+  for(let yr=0;yr<=maxHz;yr++){
+    const ra=simYearRow(simState[0],yr), rb=simYearRow(simState[1],yr);
+    const isA=yr===simState[0].hz, isB=yr===simState[1].hz;
+    h+=`<tr style="${yr===0?'opacity:.5':''}">
+      <td style="${tdStyle};font-weight:700">${yr===0?'Hoy':'Año '+yr}</td>
+      <td style="${tdStyle}">${simFmtD(ra.eps)}</td>
+      <td style="${tdStyle};${isA?'color:var(--green);font-weight:700':''}">${simFmtD(ra.price)}</td>
+      <td style="${tdStyle}">${simFmtX(ra.implPE)}</td>
+      <td style="${tdStyle};${yr>0?'color:var(--green)':''}">${simFmtD(ra.val10k)}</td>
+      <td style="${tdStyle};border-left:1px solid var(--border)">${simFmtD(rb.eps)}</td>
+      <td style="${tdStyle};${isB?'color:var(--blue);font-weight:700':''}">${simFmtD(rb.price)}</td>
+      <td style="${tdStyle}">${simFmtX(rb.implPE)}</td>
+      <td style="${tdStyle};${yr>0?'color:var(--blue)':''}">${simFmtD(rb.val10k)}</td>
+    </tr>`;
+  }
+  h+='</tbody>'; el.innerHTML=h;
+}
+
+function simYearRow(co,yr){
+  const pe=simGetPE(co);
+  if(yr===0) return {eps:co.eps,price:co.precio,implPE:pe,val10k:10000};
+  const eps=co.eps*Math.pow(1+co.grow/100,yr);
+  const {cagr}=simCalc(co);
+  const val10k=10000*Math.pow(1+cagr/100,yr);
+  const price=co.precio*Math.pow(1+cagr/100,yr);
+  return {eps,price,implPE:price/eps,val10k};
+}
+
+function simRenderChart(){
+  const canvas=document.getElementById('sim-growth-chart'); if(!canvas) return;
+  const maxHz=Math.max(simState[0].hz,simState[1].hz,5);
+  const labels=Array.from({length:maxHz+1},(_,i)=>i===0?'Hoy':'Año '+i);
+  const isDark=document.documentElement.getAttribute('data-theme')==='dark'||window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const gc=isDark?'rgba(255,255,255,.08)':'rgba(0,0,0,.07)';
+  const tc=isDark?'#9A9080':'#6B6358';
+  const mk=(co,color)=>({
+    label:co.name,
+    data:Array.from({length:maxHz+1},(_,i)=>{const {cagr}=simCalc(co);return+(10000*Math.pow(1+cagr/100,i)).toFixed(0);}),
+    borderColor:color,backgroundColor:color.replace(')',', .10)').replace('var(--','rgba(').replace(')',')'),
+    borderWidth:2.5,pointRadius:4,pointBackgroundColor:color,fill:true,tension:.35
+  });
+  if(simChart) simChart.destroy();
+  simChart=new Chart(canvas.getContext('2d'),{
+    type:'line',
+    data:{labels,datasets:[
+      {label:simState[0].name,data:Array.from({length:maxHz+1},(_,i)=>{const {cagr}=simCalc(simState[0]);return+(10000*Math.pow(1+cagr/100,i)).toFixed(0);}),borderColor:'#8A5E10',backgroundColor:'rgba(138,94,16,.1)',borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#8A5E10',fill:true,tension:.35},
+      {label:simState[1].name,data:Array.from({length:maxHz+1},(_,i)=>{const {cagr}=simCalc(simState[1]);return+(10000*Math.pow(1+cagr/100,i)).toFixed(0);}),borderColor:'#1A4470',backgroundColor:'rgba(26,68,112,.08)',borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#1A4470',fill:true,tension:.35},
+      {label:'S&P 500 ref (10%)',data:Array.from({length:maxHz+1},(_,i)=>+(10000*Math.pow(1.10,i)).toFixed(0)),borderColor:isDark?'rgba(255,255,255,.25)':'rgba(0,0,0,.2)',borderDash:[5,4],borderWidth:1.5,pointRadius:0,fill:false,tension:0}
+    ]},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{labels:{color:tc,font:{family:'Inter',size:11,weight:'600'},boxWidth:14,padding:16}},
+        tooltip:{callbacks:{label:c=>' '+c.dataset.label+': '+new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(c.parsed.y)}}
+      },
+      scales:{
+        x:{grid:{color:gc},ticks:{color:tc,font:{size:11}}},
+        y:{grid:{color:gc},ticks:{color:tc,font:{size:11},callback:v=>'$'+new Intl.NumberFormat('en-US',{notation:'compact'}).format(v)}}
+      }
+    }
+  });
+}
+
+function simRenderRank(){
+  const el=document.getElementById('sim-rank-breakdown'); if(!el) return;
+  el.innerHTML=simState.map((co,i)=>{
+    const {cagr}=simCalc(co), rs=simRank(co);
+    const cc=0.60*Math.min(cagr/50,1.5), sc=0.40*(co.score/10);
+    const col=i===0?'var(--yellow)':'var(--blue)';
+    return `<div style="margin-bottom:${i===0?'14px':'0'};padding-bottom:${i===0?'14px':'0'};border-bottom:${i===0?'1px solid var(--border)':'none'}">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <span style="font-size:.75rem;font-weight:700;color:${col}">${co.name}</span>
+        <span style="font-family:monospace;font-size:.78rem;font-weight:700;color:var(--fg)">Rank ${rs.toFixed(3)}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div style="background:var(--surface2);border-radius:7px;padding:10px">
+          <div style="font-size:.65rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">CAGR · 60% peso</div>
+          <div style="font-family:monospace;font-size:1.1rem;font-weight:800;color:var(--yellow)">${simFmtPct(cagr)}</div>
+          <div style="font-size:.68rem;color:var(--muted);margin-top:3px">Contribución: +${cc.toFixed(3)}</div>
+        </div>
+        <div style="background:var(--surface2);border-radius:7px;padding:10px">
+          <div style="font-size:.65rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Score · 40% peso</div>
+          <div style="font-family:monospace;font-size:1.1rem;font-weight:800;color:var(--blue)">${co.score.toFixed(1)}/10</div>
+          <div style="font-size:.68rem;color:var(--muted);margin-top:3px">Contribución: +${sc.toFixed(3)}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function simRender(){
+  try{ simRenderCards(); }catch(e){ console.error('simRenderCards:',e); }
+  try{ simRenderTable(); }catch(e){ console.error('simRenderTable:',e); }
+  try{ simRenderChart(); }catch(e){ console.error('simRenderChart:',e); var el=document.getElementById('sim-growth-chart'); if(el){ el.parentElement.innerHTML='<div style="color:red;padding:10px">Chart error: '+e.message+'</div>'; } }
+  try{ simRenderRank(); }catch(e){ console.error('simRenderRank:',e); }
+}
+
+// Init on page show
+// sim init wired directly into showPage above
+
+// Expose on window so showPage (outer scope) can call them
+window.simLoadSliders = simLoadSliders;
+window.simRender = simRender;
+
+// Also render on theme change
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ()=>{ if(document.getElementById('page-sim').classList.contains('active')) window.simRender(); });
+})();
+</script>
+
+
+
+<!-- ══════════════════════════════════════════
+     PÁGINA: SIMULADOR CAGR
+══════════════════════════════════════════ -->
+<div class="page" id="page-sim">
+  <div class="shared-header-slot"></div>
+  <div class="back-bar">
+    <button class="back-btn" onclick="showPage('filosofia')">← Inicio</button>
+    <span class="back-bar-title">📐 Simulador de Retorno</span>
+  </div>
+  <div class="container" style="max-width:1080px">
+    <div class="page-header">
+      <div class="page-header-label" style="color:var(--purple)">📐 Simulador</div>
+      <h2>Simulador de Retorno</h2>
+      <p>Cómo interactúan Score, Precio, Crecimiento de EPS y P/E de salida en el retorno proyectado a 3–5 años.</p>
+    </div>
+
+    <!-- ── SIMULATOR LAYOUT ── -->
+    <div class="sim-layout">
+      <!-- PANEL IZQUIERDO -->
+      <aside>
+        <div class="sim-panel">
+          <div class="sim-panel-title">Configurar empresa</div>
+          <div class="sim-co-tabs">
+            <button class="sim-co-tab active" onclick="simSelectCo(0)">Empresa A</button>
+            <button class="sim-co-tab" onclick="simSelectCo(1)">Empresa B</button>
+          </div>
+          <input class="sim-name-input" id="sim-co-name" type="text" value="Empresa A" oninput="simUpdateName(this.value)">
+          <div class="sim-slider-group">
+            <div class="sim-slider-row">
+              <div class="sim-slider-header">
+                <span class="sim-slider-label">Precio actual ($)</span>
+                <span class="sim-slider-val" id="sv-precio">$100</span>
+              </div>
+              <input type="range" id="ss-precio" min="10" max="500" step="5" value="100" oninput="simSync('precio',this.value)">
+            </div>
+            <div class="sim-slider-row">
+              <div class="sim-slider-header">
+                <span class="sim-slider-label">EPS actual ($)</span>
+                <span class="sim-slider-val" id="sv-eps">$5.00</span>
+              </div>
+              <input type="range" id="ss-eps" min="0.5" max="50" step="0.5" value="5" oninput="simSync('eps',this.value)">
+            </div>
+            <div class="sim-slider-row">
+              <div class="sim-slider-header">
+                <span class="sim-slider-label">Crecimiento EPS (%)</span>
+                <span class="sim-slider-val" id="sv-grow">10%</span>
+              </div>
+              <input type="range" id="ss-grow" min="0" max="40" step="1" value="10" oninput="simSync('grow',this.value)">
+            </div>
+            <div class="sim-slider-row">
+              <div class="sim-slider-header">
+                <span class="sim-slider-label">P/E actual (Precio÷EPS)</span>
+                <span class="sim-slider-val" id="sv-pe">20.0x</span>
+              </div>
+              <div style="background:var(--surface2);border-radius:6px;padding:6px 10px;font-size:.72rem;color:var(--muted)">
+                Calculado automáticamente · P/E salida: <span id="sv-pe-exit" style="color:var(--yellow);font-weight:700;font-family:monospace">25.0x</span>
+              </div>
+            </div>
+            <div class="sim-slider-row">
+              <div class="sim-slider-header">
+                <span class="sim-slider-label">Horizonte (años)</span>
+                <span class="sim-slider-val" id="sv-hz">3 años</span>
+              </div>
+              <input type="range" id="ss-hz" min="1" max="7" step="1" value="3" oninput="simSync('hz',this.value)">
+            </div>
+            <div class="sim-slider-row">
+              <div class="sim-slider-header">
+                <span class="sim-slider-label">Dividendo anual (%)</span>
+                <span class="sim-slider-val" id="sv-div">0.0%</span>
+              </div>
+              <input type="range" id="ss-div" min="0" max="5" step="0.1" value="0" oninput="simSync('div',this.value)">
+            </div>
+            <div class="sim-slider-row">
+              <div class="sim-slider-header">
+                <span class="sim-slider-label">Consenso analistas ($)</span>
+                <span class="sim-slider-val" id="sv-consensus">$130</span>
+              </div>
+              <input type="range" id="ss-consensus" min="10" max="1000" step="5" value="130" oninput="simSync('consensus',this.value)">
+            </div>
+            <div style="height:1px;background:var(--border);margin:16px 0"></div>
+            <div class="sim-slider-row">
+              <div class="sim-slider-header">
+                <span class="sim-slider-label">Score (0–10)</span>
+                <span class="sim-slider-val" id="sv-score">7.5</span>
+              </div>
+              <input type="range" id="ss-score" min="0" max="10" step="0.1" value="7.5" oninput="simSync('score',this.value)">
+              <div style="display:flex;align-items:center;gap:8px;margin-top:6px">
+                <div style="flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden">
+                  <div id="sim-score-fill" style="height:100%;border-radius:3px;background:var(--yellow);width:75%;transition:width .3s"></div>
+                </div>
+              </div>
+            </div>
+          </div><!-- /sim-slider-group -->
+          <div style="background:var(--surface2);border-radius:7px;padding:10px 12px;font-size:.72rem;color:var(--muted);line-height:1.6;margin-top:16px">
+            <strong>P/E salida:</strong> &lt;10→12.5x · 10-15→14x · 15-20→17.5x · 20-30→min(PE,25)x · 30-40→30x · 40-50→35x · &gt;50→40x<br><br>
+            <code style="font-family:monospace;color:var(--yellow)">CAGR = (EPS×(1+g)ᴺ × PE_salida / Precio)^(1/N) − 1 + div%</code>
+          </div>
+        </div>
+      </aside>
+
+      <!-- COLUMNA DERECHA -->
+      <div class="sim-right-col">
+        <div class="sim-result-grid" id="sim-result-cards"></div>
+        <div class="sim-panel">
+          <div class="sim-panel-title">Proyección año a año · comparativa</div>
+          <div style="overflow-x:auto"><table id="sim-proj-table" style="width:100%;border-collapse:collapse;font-size:.78rem;font-variant-numeric:tabular-nums"></table></div>
+        </div>
+        <div class="sim-panel">
+          <div class="sim-panel-title">Crecimiento del capital · $10,000 invertidos</div>
+          <div style="position:relative;height:240px"><canvas id="sim-growth-chart"></canvas></div>
+        </div>
+        <div class="sim-panel">
+          <div class="sim-panel-title">¿Qué mueve el ranking? · Ideas Lab</div>
+          <div id="sim-rank-breakdown"></div>
+        </div>
+      </div>
+    </div><!-- /sim-layout -->
+  </div>
+</div><!-- /page-sim -->
+</body></html>
