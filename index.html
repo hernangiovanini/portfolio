@@ -178,6 +178,7 @@ p.white{color:var(--fg)}
 .pill-blue{background:#1A4D7A18;color:var(--blue);border:1px solid var(--blue)}
 .pill-grey{background:var(--border);color:var(--muted);border:1px solid var(--border)}
 .pill-purple{background:var(--purple-dim);color:var(--purple);border:1px solid var(--purple)}
+.pill-orange{background:#FF6B0018;color:#FF8C00;border:1px solid #FF8C00}
 
 .note-box{background:var(--surface);border:1px solid var(--yellow);
   border-radius:10px;padding:1rem 1.25rem;margin:1.5rem 0}
@@ -1167,14 +1168,14 @@ function computeCAGR(precio, eps, peActual, horizonte, divYield){
 function seedDefaultIdeas(){
   // v9: EPS verificados vía consenso stockanalysis.com + escala P/E 7 tramos (oct 2026)
   // Limpia seeds anteriores
-  ['v1','v2','v3','v4','v5','v6','v7','v8','v9','v10','v11','v12','v13','v14','v15','v16'].forEach(v=>{try{localStorage.removeItem('ideas-lab-seeded-'+v);}catch(e){}});
-  if(localStorage.getItem('ideas-lab-seeded-v17'))return;
-  try{localStorage.setItem('ideas-lab-seeded-v17','1');}catch(e){}
+  ['v1','v2','v3','v4','v5','v6','v7','v8','v9','v10','v11','v12','v13','v14','v15','v16','v17'].forEach(v=>{try{localStorage.removeItem('ideas-lab-seeded-'+v);}catch(e){}});
+  if(localStorage.getItem('ideas-lab-seeded-v18'))return;
+  try{localStorage.setItem('ideas-lab-seeded-v18','1');}catch(e){}
   // eps = consenso analistas para año horizonte | peActual = P/E fwd | divYield = % anual
   const seeds=[
     {ticker:'APP',nombre:'AppLovin Corporation',
-      notas:'AXON AI engine — AdTech móvil con FCF margin >65%. Caída 63% desde máx por overhang regulatorio SEC. Upside asimétrico si investigación concluye sin penalidad material. EPS consenso 2028: $31.06 (consenso 18 analistas, rango $23–$38). P/E actual ~27x → exit P/E 25x (tramo 20–30x, activo < 25x).',
-      precio:272.46,target:480.08,eps:31.06,peActual:27,horizonte:3,divYield:0,
+      notas:'AXON AI engine — AdTech móvil con FCF margin >65%. Oppenheimer target $660 (oct 2026). Overhang regulatorio SEC pero FCF sólido. EPS consenso 2028: $31.06 (consenso 18 analistas, rango $23–$38). P/E actual ~35x → exit P/E 25x. Margen de seguridad +80.8% vs $660.',
+      precio:365.00,target:660.00,eps:31.06,peActual:35,horizonte:3,divYield:0,
       dims:[7.5,8.5,9.0,7.0,9.5,8.0,3.0],ts:Date.now()-6000},
     {ticker:'FTAI',nombre:'FTAI Aviation Ltd.',
       notas:'MRO módulos CFM56/V2500 — modelo asset-light de altísimo ROIC. Cotiza $164 vs pico $323 (-49% desde máx). Consensus: $346 target (+110%), 8 Buy / 2 Hold. 1 rating post-sep: Barclays $310 (sep 15). Alta deuda pero FCF sólido. EPS consenso FY2028: $15.93 (extrapolado 2027→2028 al mismo crecimiento). P/E actual ~43x → exit P/E 35x. Div ~$1.20/año.',
@@ -1325,12 +1326,12 @@ const CORE_DATA=[
   {ticker:'META',nombre:'Meta Platforms Inc.',score:8.48,cagr:12,horizonte:4,precio:694.25,target:814.51,
    eps:44.67,peActual:26,divYield:0.0,
    dims:[9.0,8.5,8.5,9.0,8.0,9.0,6.5],
-   pills:'<span class="pill pill-green">Score 8.48</span><span class="pill pill-yellow">CAGR +12%</span><span class="pill pill-blue">AI ad efficiency</span>',
+   pills:'<span class="pill pill-green">Score 8.48</span><span class="pill pill-yellow">CAGR +12%</span><span class="pill pill-orange">Split 2:1 ene-2027</span>',
    queHace:'Meta opera las redes sociales más grandes del mundo: Facebook (3B+ DAU), Instagram, WhatsApp y Messenger. Su negocio es publicidad digital basada en targeting de datos comportamentales — el mejor engine de conversión del mercado. La inversión masiva en IA (Llama, Advantage+) está mejorando la eficiencia publicitaria y abriendo nuevas superficies de monetización. Reality Labs (Quest) es una apuesta de largo plazo aún no rentable.',
-   quote:'"Consensus 68 analistas: 58 Buy. Target promedio $815 (+17.3%). JPMorgan $680 (oct 14). Oppenheimer $700 (oct 1). La guía Q3 fue sólida — Advantage+ AI sigue ganando share en presupuestos de performance marketing de e-commerce. A $694 el margen de seguridad es del +17.3% — todavía por debajo del umbral Tier 1 ≥20%."',
-   tesis:'META tiene el targeting publicitario más eficiente del mundo, una base de 3B+ usuarios imposible de replicar, y un negocio que genera &gt;$40B de FCF anual. La IA no es un gasto de capex para META — es un multiplicador de revenue: cada punto de mejora en Advantage+ se traduce directamente en mayor precio por impresión. Reality Labs es optionality a bajo costo. Nota oct-2026: precio $694 — margen de seguridad +17.3%, sigue en Tier 2 pero acercándose al umbral de 20%.',
-   riesgos:'(1) Margen de seguridad +17.3% — todavía por debajo del umbral ≥20% para Tier 1. (2) Saturación de adultos en EEUU/Europa — crecimiento viene de mercados emergentes con menor ARPU. (3) Regulación europea (DMA, privacidad) reduce el targeting. (4) Capex masivo en IA y Reality Labs puede comprimir FCF margin.',
-   entry:'$580–620'},
+   quote:'"Consensus 68 analistas: 58 Buy. Target promedio $815 (+17.3%). JPMorgan $680 (oct 14). Oppenheimer $700 (oct 1). La guía Q3 fue sólida — Advantage+ AI sigue ganando share en presupuestos de performance marketing de e-commerce. ⚠️ Split 2:1 anunciado oct-2026 — efectivo 19-ene-2027. Todos los valores (precio, target, EPS) se ajustan a la mitad en la revisión de enero."',
+   tesis:'META tiene el targeting publicitario más eficiente del mundo, una base de 3B+ usuarios imposible de replicar, y un negocio que genera &gt;$40B de FCF anual. La IA no es un gasto de capex para META — es un multiplicador de revenue: cada punto de mejora en Advantage+ se traduce directamente en mayor precio por impresión. Reality Labs es optionality a bajo costo. ⚠️ Split 2:1 efectivo 19-ene-2027: en la revisión de enero ajustar precio→$347, target→$407, EPS→$22.34.',
+   riesgos:'(1) Margen de seguridad +17.3% — todavía por debajo del umbral ≥20% para Tier 1. (2) ⚠️ Split 2:1 efectivo 19-ene-2027: ajustar todos los valores a la mitad en la revisión de enero. (3) Saturación de adultos en EEUU/Europa — crecimiento viene de mercados emergentes con menor ARPU. (4) Regulación europea (DMA, privacidad) reduce el targeting. (5) Capex masivo en IA y Reality Labs puede comprimir FCF margin.',
+   entry:'$580–620 (pre-split) / $290–310 (post-split ene-2027)'},
   {ticker:'ASML',nombre:'ASML Holding N.V.',score:8.80,cagr:6,horizonte:4,precio:1630.84,target:2152,
    eps:67.60,peActual:32,divYield:0.8,
    dims:[9.5,9.0,8.5,8.5,8.5,9.5,7.0],
@@ -1340,14 +1341,14 @@ const CORE_DATA=[
    tesis:'ASML tiene el moat más difícil de destruir del mundo de semiconductores: tomó 20+ años y más de €20B de I+D para desarrollar el EUV. Ningún competidor puede construir una alternativa creíble en menos de 10-15 años. Es literalmente el cuello de botella de la revolución de IA — sin sus máquinas, no hay chips avanzados. A $1,642 cotiza con margen de seguridad del +31.1% vs consenso $2,152.',
    riesgos:'(1) Exposición a China (15-20% del revenue) — control de exportaciones puede reducir TAM. (2) Alta dependencia de TSMC (~50% de ventas de EUV). (3) Ciclicidad del capex de semiconductores — los backlog se pueden reducir en recesiones. (4) Precio €/USD crea volatilidad en USD.',
    entry:'$1,400–1,550'},
-  {ticker:'ISRG',nombre:'Intuitive Surgical Inc.',score:8.74,cagr:18,horizonte:4,precio:438.00,target:478.53,
+  {ticker:'ISRG',nombre:'Intuitive Surgical Inc.',score:8.74,cagr:18,horizonte:4,precio:438.00,target:525.00,
    eps:11.33,peActual:38,divYield:0.0,
    dims:[9.0,9.0,8.5,9.5,9.0,9.0,6.5],
-   pills:'<span class="pill pill-green">Score 8.74</span><span class="pill pill-yellow">CAGR +18%</span><span class="pill pill-red">Margen 9.3% — Tier 2</span><span class="pill pill-green">Da Vinci monopolio</span>',
+   pills:'<span class="pill pill-green">Score 8.74</span><span class="pill pill-yellow">CAGR +18%</span><span class="pill pill-green">Margen +19.9% — Tier 1</span><span class="pill pill-green">Da Vinci monopolio</span>',
    queHace:'Intuitive Surgical fabrica el sistema robótico quirúrgico Da Vinci, el estándar de facto para cirugía mínimamente invasiva. Con más de 9,500 sistemas instalados en hospitales globales, genera el 70%+ de su revenue de consumibles e instrumentos por procedimiento (un modelo razor/razorblade perfecto). Los cirujanos que aprenden Da Vinci no quieren aprender otro sistema — su curva de aprendizaje crea un moat comportamental único en medicina.',
-   quote:'"Consenso 34 analistas (post-sep 2026): 28 Buy / 5 Hold / 1 Sell. Target promedio $479. Piper Sandler $525 (oct 2026). Precio oct 20: $438.00 (+2.6% vs oct 16). ⚠️ Q3 earnings reportado el 20-oct-2026 — precio after-hours -7% (~$407). Beat en EPS ($3.00 vs est. $2.64) y revenue ($3.05B vs est. $2.91B), pero procedimientos EE.UU. desaceleraron a +12% (vs +14% Q1), atribuido a postergación de cirugías por cambios en subsidios ACA. Adj. operating margin 26.4% vs 38.9% YoY — compresión significativa. Score revisado a 8.74. Revenue TTM $11.03B (+20.7% YoY). EPS TTM $8.72 (+21.6% YoY). Da Vinci 5 en ramp con adopción superior a generaciones anteriores."',
-   tesis:'ISRG tiene el moat más defensivo del Core: el switching cost no es tecnológico sino biológico — los cirujanos pasan 200-300 horas aprendiendo Da Vinci y no van a reentrenarse. El modelo es perfecto: hardware a precio de costo + consumibles de $2,000-4,000 por procedimiento con margen de 70%+. El aumento de procedimientos quirúrgicos globales es tendencia secular independiente del ciclo económico. Nota oct-2026: margen de seguridad del +12.3% vs consenso $479 — Tier 2.',
-   riesgos:'(1) Margen de seguridad comprimido (+9.3%) — precio $438 sube post-reacción, AH el 20-oct a $408 sugiere volatilidad por earnings. Esperar confirmación de targets post-resultados. (2) Competencia de Medtronic Hugo, Johnson &amp; Johnson Ottava en ramp. (3) Regulación FDA más estricta en nuevas indicaciones. (4) Concentración en EE.UU. (~65% del revenue). (5) Expansión internacional más lenta en sistemas de salud públicos (UE, Japón).',
+   quote:'"Consenso 34 analistas (post-sep 2026): 28 Buy / 5 Hold / 1 Sell. Target promedio $479. Piper Sandler $525 (oct 2026). Q3 2026 beat: EPS $1.49, revenue $3B +22% YoY — récord de colocaciones Da Vinci 5. Piper Sandler elevó target a $525 post-resultados. Margen de seguridad +19.9% vs $525."',
+   tesis:'ISRG tiene el moat más defensivo del Core: el switching cost no es tecnológico sino biológico — los cirujanos pasan 200-300 horas aprendiendo Da Vinci y no van a reentrenarse. El modelo es perfecto: hardware a precio de costo + consumibles de $2,000-4,000 por procedimiento con margen de 70%+. El aumento de procedimientos quirúrgicos globales es tendencia secular independiente del ciclo económico. Q3 2026 beat con EPS $1.49 y revenue $3B +22% YoY. Piper Sandler elevó target a $525. Margen de seguridad +19.9% — muy cerca del umbral Tier 1.',
+   riesgos:'(1) Margen de seguridad +19.9% vs target $525 — cerca del umbral Tier 1 ≥20%. (2) Competencia de Medtronic Hugo, Johnson &amp; Johnson Ottava en ramp. (3) Regulación FDA más estricta en nuevas indicaciones. (4) Concentración en EE.UU. (~65% del revenue). (5) Expansión internacional más lenta en sistemas de salud públicos (UE, Japón).',
    entry:'$340–360'},
   {ticker:'GOOGL',nombre:'Alphabet Inc.',score:8.95,cagr:19,horizonte:4,precio:340.28,target:430.51,
    eps:20.54,peActual:22,divYield:0.0,
@@ -1358,13 +1359,13 @@ const CORE_DATA=[
    tesis:'GOOGL cotiza al múltiplo más bajo entre las Mag7 (~17x PE forward) a pesar de tener el moat más diversificado. La tesis es simple: el mercado está sobreestimando el riesgo de disruption de Search por LLMs. En realidad, Gemini integrado en Search está mejorando el engagement y el revenue per query. Google Cloud tiene momentum real. A $341 el margen de seguridad es +26.6% vs consenso $431.',
    riesgos:'(1) DOJ antitrust — riesgo de remedies que podrían forzar la venta de Chrome o Android. (2) AI Overviews reduce clicks a sitios de terceros — comprime potencialmente el RPM. (3) Competencia de OpenAI/Microsoft Copilot en enterprise AI. (4) YouTube monetización estancada vs TikTok.',
    entry:'$290–310'},
-  {ticker:'CEG',nombre:'Constellation Energy Corp.',score:8.30,cagr:20,horizonte:4,precio:258.84,target:337.57,
+  {ticker:'CEG',nombre:'Constellation Energy Corp.',score:8.30,cagr:20,horizonte:4,precio:258.84,target:378.00,
    eps:16.00,peActual:25,divYield:0.7,
    dims:[8.5,8.0,7.5,7.5,9.0,8.5,7.5],
-   pills:'<span class="pill pill-green">Score 8.30</span><span class="pill pill-yellow">CAGR +20%</span><span class="pill pill-purple">Nuclear 24/7 AI</span>',
+   pills:'<span class="pill pill-green">Score 8.30</span><span class="pill pill-yellow">CAGR +20%</span><span class="pill pill-green">Margen +46.0% — Tier 1</span><span class="pill pill-purple">Nuclear 24/7 AI</span>',
    queHace:'Constellation Energy es el mayor operador de plantas nucleares en EEUU (~10% de la generación nuclear del país). Firmó contratos PPA de largo plazo con Microsoft (Three Mile Island — reactiva para Copilot data centers) y está en negociaciones avanzadas con otros hyperscalers. Es la forma más pura de invertir en la demanda de energía de IA de "base load" — energía nuclear 24/7, sin intermitencia, a precios acordados por 20 años.',
-   quote:'"Consensus 18 analistas: 15 Buy. Target promedio $338. Guggenheim $380 (oct 2026). El acuerdo con Microsoft para la reactivación de Three Mile Island fue el catalizador más importante del sector energía de este año. Los talks con Amazon y Meta para contratos similares están en fase avanzada."',
-   tesis:'CEG tiene el activo más escaso del mercado energético de IA: plantas nucleares ya construidas, con licencias vigentes o renovables, en un entorno donde construir una nueva planta tarda 15-20 años. Los PPAs de 20 años con hyperscalers eliminan el riesgo merchant y crean un modelo de FCF predecible similar a un REIT de infraestructura. A $259 cotiza con margen de seguridad del +30.4% vs consenso $338 — la caída desde $271 mejoró la oportunidad de entrada.',
+   quote:'"Consensus 18 analistas: 15 Buy. Target promedio $338. Morgan Stanley $378 (oct 2026). Guggenheim $380. El acuerdo con Microsoft para la reactivación de Three Mile Island fue el catalizador más importante del sector energía de este año. Los talks con Amazon y Meta para contratos similares están en fase avanzada. Morgan Stanley elevó target a $378 post-Q3."',
+   tesis:'CEG tiene el activo más escaso del mercado energético de IA: plantas nucleares ya construidas, con licencias vigentes o renovables, en un entorno donde construir una nueva planta tarda 15-20 años. Los PPAs de 20 años con hyperscalers eliminan el riesgo merchant y crean un modelo de FCF predecible similar a un REIT de infraestructura. Morgan Stanley elevó target a $378 en oct 2026. A $259 cotiza con margen de seguridad del +46.0% vs $378 — Tier 1 sólido.',
    riesgos:'(1) Regulación nuclear: extensión de licencias requiere aprobación de la NRC. (2) Dependencia de 1-2 contratos PPA mega — si Microsoft o Amazon renegocian, el impacto es grande. (3) Capex de mantenimiento de plantas nucleares es impredecible. (4) Precio de mercado eléctrico afecta revenue de plants sin PPA.',
    entry:'$230–250'},
   {ticker:'AMZN',nombre:'Amazon.com Inc.',score:8.29,cagr:8,horizonte:4,precio:262.63,target:331.46,
@@ -1394,7 +1395,16 @@ const CORE_DATA=[
    quote:'"Consensus 45 analistas: 38 Buy. Target promedio $423. Mizuho $450 (oct 2026). El volumen de pagos cross-border creció 14% YoY en Q3 FY2026 — el mejor trimestre en 2 años. La penetración de efectivo a digital en mercados emergentes es el driver de largo plazo."',
    tesis:'Visa es el negocio más cercano a la perfección del Core: network effects de dos lados (más comercios atraen más usuarios, más usuarios atraen más comercios), switching costs absolutos (ningún banco quiere reconstruir la infraestructura de aceptación global), y un modelo que se beneficia de la inflación (más gasto nominal = más revenue). Está en Tier 2 por el margen de seguridad (+4.0%) — posición bien posicionada para añadir en correcciones significativas.',
    riesgos:'(1) Margen de seguridad +4.0% — muy por debajo del umbral ≥20% para posición Core activa. (2) Competencia de stablecoins y CBDC podría reducir el TAM de tarjetas a largo plazo. (3) Regulación de interchange fees (Durbin Amendment y posibles extensiones). (4) Desaceleración de consumo en recesión reduce volumen.',
-   entry:'$305–315'}
+   entry:'$305–315'},
+  {ticker:'JPM',nombre:'JPMorgan Chase & Co.',score:8.45,cagr:14,horizonte:4,precio:246.00,target:372.00,
+   eps:31.00,peActual:14,divYield:2.6,
+   dims:[9.0,8.0,9.0,8.0,9.0,8.5,6.5],
+   pills:'<span class="pill pill-green">Score 8.45</span><span class="pill pill-yellow">CAGR +14%</span><span class="pill pill-green">Margen +51.2% — Tier 1</span><span class="pill pill-blue">Banca universal #1</span>',
+   queHace:'JPMorgan Chase es el banco más grande y rentable del mundo por capitalización de mercado ($500B+). Opera en cuatro segmentos: Consumer &amp; Community Banking (banca retail con 80M clientes), Commercial Banking, Corporate &amp; Investment Bank (el mayor banco de inversión de EEUU) y Asset &amp; Wealth Management ($3.9T AUM). Su plataforma tecnológica procesa $10T+ diarios en pagos. Jamie Dimon ha compuesto ROTCE superior al 15% durante 15+ años.',
+   quote:'"Consensus 28 analistas: 20 Buy / 7 Hold / 1 Sell. Target promedio $272. Q3 2026: EPS $5.57 (+7% YoY), revenue $50.9B (+8% YoY), ROTCE 21%, CET1 13.9%. Cotiza a 1.9x tangible book. Target consenso conservador vs potencial real de largo plazo."',
+   tesis:'JPM es el banco mejor gestionado del mundo. Tiene cuatro fuentes de moat: (1) network effects en pagos (escala imposible de replicar), (2) switching costs en banca corporativa y de inversión, (3) licencia regulatoria como barrera de entrada estructural, y (4) base de depósitos de bajo costo que otorga ventaja en funding. Complementa a Visa (pure-play pagos) con banca universal: más diversificado, más ciclico, pero con margen de seguridad del +51.2% vs consenso $272 y yield de 2.6%. Tier 1 sólido.',
+   riesgos:'(1) Ciclo crediticio: una recesión puede aumentar provisiones de crédito y comprimir earnings. (2) Bajada de tasas comprime NIM (Net Interest Margin) — entorno de tasas bajas es negativo. (3) Basel III Endgame puede exigir más capital y reducir buybacks. (4) Cotiza 1.9x tangible book — caro vs bancos regionales, aunque justificado por ROTCE superior.',
+   entry:'$210–230'}
 ];
 
 function renderCore(){
@@ -1501,7 +1511,7 @@ function renderCore(){
 (function(){
   // All tickers across Core + Ideas Lab
   const ALL_TICKERS = [
-    'NVDA','AVGO','GOOGL','CEG','ISRG','MSFT','AMZN','META','ASML','V',
+    'NVDA','AVGO','GOOGL','CEG','ISRG','MSFT','AMZN','META','ASML','V','JPM',
     'APP','FTAI','MU','VST','WMS','IREN','AXON','FICO','CPRT','MSCI'
   ];
 
